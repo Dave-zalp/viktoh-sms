@@ -54,7 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Check if user can login with username or email
+     * Check if user can login with username or email.
      *
      * @param string $login
      * @return User|null
