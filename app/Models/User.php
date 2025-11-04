@@ -54,7 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Check if user can login with username or email.
+     * Check if user can login with username or email
      *
      * @param string $login
      * @return User|null
@@ -74,5 +74,79 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getFormattedBalanceAttribute(): string
     {
         return number_format($this->balance, 2);
+    }
+
+    /**
+     * Get user's purchased numbers
+     */
+    public function purchasedNumbers()
+    {
+        return $this->hasMany(PurchasedNumber::class);
+    }
+
+    /**
+     * Get user's transactions
+     */
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    /**
+     * Get user's active numbers
+     */
+    public function activeNumbers()
+    {
+        return $this->hasMany(PurchasedNumber::class)->active();
+    }
+
+    /**
+     * Deduct balance for number purchase
+     */
+    public function deductBalance($amount, $description, $purchasedNumber = null)
+    {
+        $balanceBefore = $this->balance;
+        $this->balance -= $amount;
+        $this->save();
+
+        return Transaction::create([
+            'user_id' => $this->id,
+            'purchased_number_id' => $purchasedNumber?->id,
+            'type' => 'debit',
+            'amount' => $amount,
+            'balance_before' => $balanceBefore,
+            'balance_after' => $this->balance,
+            'description' => $description,
+            'reference' => $purchasedNumber?->activation_id,
+        ]);
+    }
+
+    /**
+     * Add balance (credit/refund)
+     */
+    public function addBalance($amount, $description, $type = 'credit', $purchasedNumber = null)
+    {
+        $balanceBefore = $this->balance;
+        $this->balance += $amount;
+        $this->save();
+
+        return Transaction::create([
+            'user_id' => $this->id,
+            'purchased_number_id' => $purchasedNumber?->id,
+            'type' => $type,
+            'amount' => $amount,
+            'balance_before' => $balanceBefore,
+            'balance_after' => $this->balance,
+            'description' => $description,
+            'reference' => $purchasedNumber?->activation_id,
+        ]);
+    }
+
+    /**
+     * Check if user has sufficient balance
+     */
+    public function hasSufficientBalance($amount): bool
+    {
+        return $this->balance >= $amount;
     }
 }
