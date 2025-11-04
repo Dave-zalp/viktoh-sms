@@ -5,7 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BalanceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\Api\NumberController;
+use App\Http\Controllers\NumberController;
 use App\Http\Controllers\ForgotPasswordController;
 
 /*
