@@ -225,32 +225,6 @@ class SmsActivateService
     }
 
     /**
-     * Get available countries (full data)
-     */
-    public function getCountriesRaw()
-    {
-        try {
-            $response = $this->makeRequest([
-                'action' => 'getCountries'
-            ]);
-
-            $data = json_decode($response, true);
-
-            if ($data) {
-                return [
-                    'success' => true,
-                    'countries' => $data
-                ];
-            }
-
-            return $this->handleError($response);
-        } catch (\Exception $e) {
-            Log::error('SMS-Activate getCountries error: ' . $e->getMessage());
-            return ['success' => false, 'error' => $e->getMessage()];
-        }
-    }
-
-    /**
      * Get country name by ID
      */
     public function getCountryName($countryId)
