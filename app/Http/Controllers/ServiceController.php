@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Service;
@@ -161,6 +161,52 @@ class ServiceController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to fetch top countries',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Get available services for a specific country
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getServicesForCountry(Request $request): JsonResponse
+    {
+        $countryId = $request->input('country');
+
+        if (!$countryId) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Country ID is required'
+            ], 400);
+        }
+
+        try {
+            $operator = $request->input('operator');
+            $result = $this->smsActivate->getServicesForCountry($countryId, $operator);
+
+            if ($result['success']) {
+                return response()->json([
+                    'success' => true,
+                    'data' => [
+                        'services' => $result['services'],
+                        'total_services' => $result['total_services']
+                    ]
+                ], 200);
+            }
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to fetch services for country',
+                'error' => $result['error'] ?? 'Unknown error'
+            ], 400);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to fetch services for country',
                 'error' => $e->getMessage()
             ], 500);
         }

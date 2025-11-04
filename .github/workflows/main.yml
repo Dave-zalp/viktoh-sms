@@ -83,6 +83,9 @@ jobs:
             echo "🔄 Running migrations..."
             php artisan migrate
 
+            # Import service names to database
+            php artisan sms:import-services
+
             # echo "Seeding database"
             # php artisan db:seed
 

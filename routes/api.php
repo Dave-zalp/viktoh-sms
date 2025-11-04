@@ -49,9 +49,11 @@ Route::middleware('auth:sanctum')->prefix('auth')->group(function () {
     Route::prefix('services')->group(function () {
         Route::get('/', [ServiceController::class, 'index']); // GET /api/v1/services
         Route::get('/countries', [ServiceController::class, 'getCountries']); // GET /api/v1/services/countries
+        Route::get('/by-country', [ServiceController::class, 'getServicesForCountry']); // GET /api/v1/services/by-country?country=187
         Route::get('/prices', [ServiceController::class, 'getPrices']); // GET /api/v1/services/prices
         Route::get('/{serviceCode}/top-countries', [ServiceController::class, 'getTopCountries']); // GET /api/v1/services/wa/top-countries
     });
+
 
 
      /*
@@ -74,11 +76,13 @@ Route::middleware('auth:sanctum')->prefix('auth')->group(function () {
     | Balance & Transaction Routes
     |--------------------------------------------------------------------------
     */
-    Route::prefix('balance')->group(function () {
-        Route::get('/', [BalanceController::class, 'index']); // GET /api/v1/balance
-        Route::get('/summary', [BalanceController::class, 'summary']); // GET /api/v1/balance/summary
-        Route::get('/transactions', [BalanceController::class, 'transactions']); // GET /api/v1/balance/transactions
-        Route::post('/add', [BalanceController::class, 'addBalance']); // POST /api/v1/balance/add
+    Route::prefix('numbers')->group(function () {
+        Route::post('/purchase', [NumberController::class, 'purchase']); // POST /api/v1/numbers/purchase
+        Route::get('/my-numbers', [NumberController::class, 'myNumbers']); // GET /api/v1/numbers/my-numbers
+        Route::get('/{id}/status', [NumberController::class, 'getStatus']); // GET /api/v1/numbers/1/status
+        Route::post('/{id}/request-sms', [NumberController::class, 'requestAnotherSms']); // POST /api/v1/numbers/1/request-sms
+        Route::post('/{id}/cancel', [NumberController::class, 'cancel']); // POST /api/v1/numbers/1/cancel
+        Route::post('/{id}/complete', [NumberController::class, 'complete']); // POST /api/v1/numbers/1/complete
     });
 
 

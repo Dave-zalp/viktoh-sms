@@ -76,6 +76,175 @@ class SmsActivateService
     }
 
     /**
+     * Get available services with quantities for a specific country
+     * Uses the getNumbersStatus endpoint
+     */
+    public function getServicesForCountry($countryId, $operator = null)
+    {
+        try {
+            $params = [
+                'action' => 'getNumbersStatus',
+                'country' => $countryId
+            ];
+
+            if ($operator) {
+                $params['operator'] = $operator;
+            }
+
+            $response = $this->makeRequest($params);
+            $data = json_decode($response, true);
+
+            if ($data && is_array($data)) {
+                // Load service names mapping
+                $serviceNames = $this->getServiceNamesMapping();
+
+                // Transform data to include service names
+                $services = [];
+                foreach ($data as $code => $quantity) {
+                    $quantity = intval($quantity);
+
+                    // Only include services with available numbers
+                    if ($quantity > 0) {
+                        $services[] = [
+                            'code' => $code,
+                            'name' => $serviceNames[$code] ?? ucfirst($code),
+                            'available_count' => $quantity
+                        ];
+                    }
+                }
+
+                // Sort by available count (descending)
+                usort($services, function($a, $b) {
+                    return $b['available_count'] - $a['available_count'];
+                });
+
+                return [
+                    'success' => true,
+                    'services' => $services,
+                    'total_services' => count($services)
+                ];
+            }
+
+            return $this->handleError($response);
+        } catch (\Exception $e) {
+            Log::error('SMS-Activate getServicesForCountry error: ' . $e->getMessage());
+            return ['success' => false, 'error' => $e->getMessage()];
+        }
+    }
+
+    /**
+     * Get service names mapping from JSON file or database
+     */
+    protected function getServiceNamesMapping()
+    {
+        // Try to load from database first
+        $servicesFromDb = \App\Models\Service::pluck('name', 'code')->toArray();
+
+        if (!empty($servicesFromDb)) {
+            return $servicesFromDb;
+        }
+
+        // Fallback to default mapping
+        return $this->getDefaultServiceMapping();
+    }
+
+    /**
+     * Default service name mapping
+     */
+    protected function getDefaultServiceMapping()
+    {
+        return [
+            'full' => 'Full Rent',
+            'ig' => 'Instagram+Threads',
+            'wa' => 'WhatsApp',
+            'fb' => 'Facebook',
+            'go' => 'Google/YouTube/Gmail',
+            'tg' => 'Telegram',
+            'am' => 'Amazon',
+            'oi' => 'Tinder',
+            'mm' => 'Microsoft',
+            'ds' => 'Discord',
+            'lf' => 'TikTok/Douyin',
+            'hw' => 'Alipay/Alibaba/1688',
+            'wx' => 'Apple',
+            'ni' => 'Gojek',
+            'abu' => 'BPJSTK',
+            'vi' => 'Viber',
+            'wb' => 'WeChat',
+            'ka' => 'Shopee',
+            'bdp' => 'Kredito',
+            'yw' => 'Grindr',
+            'gp' => 'Ticketmaster',
+            'ot' => 'Any Other',
+            'li' => 'Baidu',
+            'tm' => 'Akulaku',
+            'ju' => 'Indomaret',
+            'jg' => 'Grab',
+            'tw' => 'Twitter',
+            'ev' => 'Picpay',
+            'acm' => 'Razer',
+            'pm' => 'AOL',
+            'nv' => 'Naver',
+            'xh' => 'OVO',
+            'mb' => 'Yahoo',
+            'fr' => 'Dana',
+            'vz' => 'Hinge',
+            'dh' => 'eBay',
+            'ub' => 'Uber',
+            'dl' => 'Lazada',
+            'me' => 'Line Messenger',
+            'ew' => 'Nike',
+            'vk' => 'VK.com',
+            'asy' => 'Fore Coffee',
+            'wr' => 'Walmart',
+            'vr' => 'MotorkuX',
+            'bw' => 'Signal',
+            'df' => 'Happn',
+            'ts' => 'PayPal',
+            'qf' => 'RedBook',
+            'cq' => 'Mercado',
+            'ki' => '99app',
+            'ya' => 'Yandex/Uber',
+            'api' => 'KKTIX',
+            'aaa' => 'Nubank',
+            'nc' => 'Payoneer',
+            'fd' => 'Mamba',
+            'nz' => 'Foodpanda',
+            'ok' => 'Odnoklassniki',
+            'av' => 'Avito',
+            'ma' => 'Mail.ru',
+            'uk' => 'UKR.net',
+            'kp' => 'Kufarby',
+            'mt' => 'Rambler',
+            'ab' => 'AliExpress',
+            'we' => 'WePlay',
+            'qw' => 'Qiwi',
+            'bd' => 'Badoo',
+            'sb' => 'Sberbank',
+            'ym' => 'YandexMoney',
+            'nf' => 'Netflix',
+            'uk' => 'Steam',
+            'zn' => 'Zenly',
+            'kl' => 'Klarna',
+            'ph' => 'PlayerUnknownsBattleGrounds',
+            'rg' => 'Rockstar',
+            'vp' => 'Vinted',
+            'ao' => 'AzarLive',
+            'mg' => 'Magnit',
+            'sn' => 'OLX',
+            'qk' => 'Quikr',
+            'tc' => 'Truecaller',
+            'gt' => 'GitLab',
+            'pr' => 'Proton',
+            'mk' => 'TanTan',
+            'bt' => 'Bolt',
+            'be' => 'BetWinner',
+            'be' => 'Bethub',
+            'tf' => 'TrueID',
+        ];
+    }
+
+    /**
      * Get available countries
      */
     public function getCountries()
