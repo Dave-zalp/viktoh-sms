@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\RegisterRequest;
-use App\Mail\VerifyEmailMail;
 use App\Models\User;
+
+use Illuminate\Support\Str;
+use App\Mail\VerifyEmailMail;
 use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
+use App\Http\Requests\RegisterRequest;
 
 class RegisterController extends Controller
 {
