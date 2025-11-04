@@ -84,7 +84,7 @@ jobs:
             php artisan migrate
 
             # Import service names to database
-            php artisan sms:import-services
+            # php artisan sms:import-services
 
             # echo "Seeding database"
             # php artisan db:seed
