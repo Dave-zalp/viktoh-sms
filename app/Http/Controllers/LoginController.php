@@ -56,7 +56,7 @@ class LoginController extends Controller
             // Generate new API token
             $token = $user->createToken('auth_token')->plainTextToken;
 
-            // Update last login (if you have this field)
+            // Update last login (if you have this field).
             // $user->update(['last_login_at' => now()]);
 
             return response()->json([
