@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NumberController;
 use App\Http\Controllers\BalanceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\NumberController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\VirtualAccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +84,16 @@ Route::middleware('auth:sanctum')->prefix('auth')->group(function () {
         Route::post('/{id}/request-sms', [NumberController::class, 'requestAnotherSms']); // POST /api/v1/numbers/1/request-sms
         Route::post('/{id}/cancel', [NumberController::class, 'cancel']); // POST /api/v1/numbers/1/cancel
         Route::post('/{id}/complete', [NumberController::class, 'complete']); // POST /api/v1/numbers/1/complete
+    });
+
+       /*
+    |--------------------------------------------------------------------------
+    | Virtual Account Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('virtual-account')->group(function () {
+        Route::post('/generate', [VirtualAccountController::class, 'generateVirtualAccount']); // POST /api/v1/virtual-account/generate
+        Route::get('/', [VirtualAccountController::class, 'getVirtualAccount']); // For Admin Use
     });
 
 

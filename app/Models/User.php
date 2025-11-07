@@ -93,6 +93,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Transaction::class);
     }
 
+       /**
+     * Get user's virtual account
+     */
+    public function virtualAccount()
+    {
+        return $this->hasOne(VirtualAccount::class);
+    }
+
     /**
      * Get user's active numbers
      */
