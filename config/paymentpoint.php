@@ -7,6 +7,8 @@ return [
 
     'api_secret' => env('PAYMENTPOINT_API_SECRET', ''),
 
+    'security_key' => env('PAYMENTPOINT_API_SECRET', ''),
+
     'business_id' => env('PAYMENTPOINT_BUSINESS_ID', ''),
 
     'bank_codes' => [

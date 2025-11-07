@@ -1,13 +1,20 @@
 <?php
 
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NumberController;
 use App\Http\Controllers\BalanceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\WebhookController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\VirtualAccountController;
+
+
+
+
+Route::post('/webhook/paymentpoint', [WebhookController::class, 'paymentPointWebhook'])->withoutMiddleware(VerifyCsrfToken::class);
 
 /*
 |--------------------------------------------------------------------------
