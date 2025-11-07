@@ -37,4 +37,20 @@ class DashboardController extends Controller
             ]
         ], 200);
     }
+
+
+    public function baalance(Request $request): JsonResponse
+    {
+        $user = auth()->user();
+
+        // Wallet balance
+        $walletBalance = $user->balance;
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'wallet_balance' => floatval($walletBalance),
+            ]
+        ], 200);
+    }
 }
