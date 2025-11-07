@@ -41,7 +41,6 @@ class RegisterRequest extends FormRequest
             'phone_number' => [
                 'required',
                 'string',
-                'email',
                 'max:20',
                 'unique:users,phone_number',
             ],
