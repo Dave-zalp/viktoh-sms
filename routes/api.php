@@ -1,15 +1,16 @@
 <?php
 
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NumberController;
 use App\Http\Controllers\BalanceController;
 use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\WebhookController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\VirtualAccountController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 
 
@@ -102,6 +103,10 @@ Route::middleware('auth:sanctum')->prefix('auth')->group(function () {
         Route::post('/generate', [VirtualAccountController::class, 'generateVirtualAccount']); // POST /api/v1/virtual-account/generate
         Route::get('/', [VirtualAccountController::class, 'getVirtualAccount']); // For Admin Use
     });
+
+
+    Route::get('/dashboard/stats', [DashboardController::class, 'stats']); // GET /api/v1/dashboard/stats
+
 
 
 
