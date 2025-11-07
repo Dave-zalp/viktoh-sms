@@ -39,7 +39,7 @@ class DashboardController extends Controller
     }
 
 
-    public function baalance(Request $request): JsonResponse
+    public function balance(Request $request): JsonResponse
     {
         $user = auth()->user();
 

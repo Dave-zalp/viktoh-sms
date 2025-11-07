@@ -106,6 +106,7 @@ Route::middleware('auth:sanctum')->prefix('auth')->group(function () {
 
 
     Route::get('/dashboard/stats', [DashboardController::class, 'stats']); // GET /api/v1/dashboard/stats
+    Route::get('/dashboard/balance', [DashboardController::class, 'balance']);
 
 
 
