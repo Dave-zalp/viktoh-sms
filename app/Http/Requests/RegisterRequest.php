@@ -38,6 +38,13 @@ class RegisterRequest extends FormRequest
                 'max:255',
                 'unique:users,email',
             ],
+            'phone_number' => [
+                'required',
+                'string',
+                'email',
+                'max:20',
+                'unique:users,phone_number',
+            ],
             'password' => [
                 'required',
                 'string',
@@ -72,6 +79,8 @@ class RegisterRequest extends FormRequest
             'email.required' => 'Email address is required.',
             'email.email' => 'Please provide a valid email address.',
             'email.unique' => 'This email is already registered.',
+            'phone_number.required' => 'Phone Number is required.',
+            'phone_number.unique' => 'This Phone Number is already registered.',
             'password.required' => 'Password is required.',
             'password.confirmed' => 'Password confirmation does not match.',
             'password_confirmation.required' => 'Please confirm your password.',

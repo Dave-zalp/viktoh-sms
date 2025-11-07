@@ -28,6 +28,7 @@ class RegisterController extends Controller
                 'username' => $request->username,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'phone_number' => $request->phone_number,
                 'email_verification_token' => Str::random(64),
             ]);
 
@@ -47,6 +48,7 @@ class RegisterController extends Controller
                         'username' => $user->username,
                         'email' => $user->email,
                         'is_email_verified' => $user->is_email_verified,
+                        'phone_number' => $user->phone_number,
                         'balance' => $user->formatted_balance,
                         'created_at' => $user->created_at->toDateTimeString(),
                     ],
