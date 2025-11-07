@@ -40,8 +40,7 @@ class RegisterRequest extends FormRequest
             ],
             'phone_number' => [
                 'required',
-                'string',
-                'max:20',
+                'digits:11',
                 'unique:users,phone_number',
             ],
             'password' => [
@@ -80,6 +79,7 @@ class RegisterRequest extends FormRequest
             'email.unique' => 'This email is already registered.',
             'phone_number.required' => 'Phone Number is required.',
             'phone_number.unique' => 'This Phone Number is already registered.',
+            'phone_number.digits' => 'Phone number must be exactly 11 digits.',
             'password.required' => 'Password is required.',
             'password.confirmed' => 'Password confirmation does not match.',
             'password_confirmation.required' => 'Please confirm your password.',
