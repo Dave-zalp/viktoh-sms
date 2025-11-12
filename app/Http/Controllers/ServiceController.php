@@ -110,9 +110,7 @@ class ServiceController extends Controller
             if ($result['success']) {
                 return response()->json([
                     'success' => true,
-                    'data' => [
-                        'prices' => $result['prices']
-                    ]
+                    'data' => $result['prices']
                 ], 200);
             }
 

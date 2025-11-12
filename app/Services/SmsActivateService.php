@@ -314,40 +314,41 @@ class SmsActivateService
      * Get prices for services by country
      */
     public function getPrices($service = null, $country = null)
-    {
-        try {
-            $params = [
-                'action' => 'getPrices'
-            ];
-
-            if ($service) {
-                $params['service'] = $service;
-            }
-
-            if ($country) {
-                $params['country'] = $country;
-            }
-
-            $response = $this->makeRequest($params);
-            $data = json_decode($response, true);
-
-            if ($data) {
-                // Apply markup
-                $markup = config('sms-activate.markup_percentage', 20);
-                $data = $this->applyMarkupToPrices($data, $markup);
-
-                return [
-                    'success' => true,
-                    'prices' => $data
+        {
+            try {
+                $params = [
+                    'action' => 'getPricesExtended',
+                    'freePrice' => 'true'
                 ];
-            }
 
-            return $this->handleError($response);
-        } catch (\Exception $e) {
-            Log::error('SMS-Activate getPrices error: ' . $e->getMessage());
-            return ['success' => false, 'error' => $e->getMessage()];
+                if ($service) {
+                    $params['service'] = $service;
+                }
+
+                if ($country) {
+                    $params['country'] = $country;
+                }
+
+                $response = $this->makeRequest($params);
+                $data = json_decode($response, true);
+
+                if ($data) {
+                    // Apply markup
+                    $markup = config('sms-activate.markup_percentage', 20);
+                    $data = $this->applyMarkupToPrices($data, $markup);
+
+                    return [
+                        'success' => true,
+                        'prices' => $data
+                    ];
+                }
+
+                return $this->handleError($response);
+            } catch (\Exception $e) {
+                Log::error('SMS-Activate getPrices error: ' . $e->getMessage());
+                return ['success' => false, 'error' => $e->getMessage()];
+            }
         }
-    }
 
     /**
      * Get top countries by service
