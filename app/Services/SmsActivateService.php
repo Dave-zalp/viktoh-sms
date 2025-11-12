@@ -313,12 +313,12 @@ class SmsActivateService
     /**
      * Get prices for services by country
      */
-    public function getPrices($service = null, $country = null)
+       public function getPrices($service = null, $country = null)
         {
             try {
                 $params = [
-                    'action' => 'getPrices',
-                    // 'freePrice' => 'true'
+                    'action' => 'getPricesExtended',
+                    'freePrice' => 'true'
                 ];
 
                 if ($service) {
@@ -640,15 +640,27 @@ class SmsActivateService
 
         foreach ($data as $country => &$services) {
             foreach ($services as $service => &$priceData) {
-                if (isset($priceData['cost'])) {
+
+                // Determine the base price to use
+                if (isset($priceData['freePriceMap']) && is_array($priceData['freePriceMap']) && count($priceData['freePriceMap']) > 0) {
+                    // Get the lowest key (price) from freePriceMap
+                    $lowestPrice = min(array_keys($priceData['freePriceMap']));
+                    $priceData['original_cost'] = $lowestPrice;
+                } elseif (isset($priceData['cost'])) {
+                    // Fallback if no freePriceMap exists
                     $priceData['original_cost'] = $priceData['cost'];
-                    $priceData['cost'] = ($priceData['cost'] * (1 + ($markupPercentage / 100))) * $exchangeRate;
+                } else {
+                    continue;
                 }
+
+                // Apply markup and exchange rate
+                $priceData['cost'] = ($priceData['original_cost'] * (1 + ($markupPercentage / 100))) * $exchangeRate;
             }
         }
 
         return $data;
     }
+
 
     /**
      * Handle API errors
