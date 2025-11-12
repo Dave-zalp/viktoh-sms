@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Service;
-use App\Services\SmsActivateService;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use App\Services\SmsActivateService;
 
 class ServiceController extends Controller
 {
@@ -114,6 +115,13 @@ class ServiceController extends Controller
                 ], 200);
             }
 
+            // Log failed API response
+            Log::error('Failed to fetch prices from SMSActivate API', [
+                'service' => $service,
+                'country' => $country,
+                'response' => $result
+            ]);
+
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to fetch prices',
@@ -121,6 +129,15 @@ class ServiceController extends Controller
             ], 400);
 
         } catch (\Exception $e) {
+
+            // Log unexpected exceptions
+            Log::error('Exception occurred while fetching prices', [
+                'service' => $request->input('service'),
+                'country' => $request->input('country'),
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to fetch prices',
