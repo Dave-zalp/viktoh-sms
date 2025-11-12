@@ -334,8 +334,7 @@ class SmsActivateService
 
                 if ($data) {
                     // Apply markup
-                    $markup = config('sms-activate.markup_percentage', 20);
-                    $data = $this->applyMarkupToPrices($data, $markup);
+                    $data = $this->applyMarkupToPrices($data);
 
                     return [
                         'success' => true,
@@ -634,9 +633,10 @@ class SmsActivateService
     /**
      * Apply markup to prices
      */
-    protected function applyMarkupToPrices(array $data, $markupPercentage)
+    protected function applyMarkupToPrices(array $data,)
     {
         $exchangeRate = config('sms-activate.exchange_rate', 1500);
+        $markupPercentage = config('sms-activate.markup_percentage', 20);
 
         foreach ($data as $country => &$services) {
             foreach ($services as $service => &$priceData) {

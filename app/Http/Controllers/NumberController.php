@@ -78,8 +78,14 @@ class NumberController extends Controller
 
             // Check if user has sufficient balance
             $cost = $result['cost'];
+            $exchangeRate = config('sms-activate.exchange_rate', 1500);
+            $markupPercentage = config('sms-activate.markup_percentage', 20);
 
-            if (!$user->hasSufficientBalance($cost)) {
+            // Convert to user's currency and apply markup
+            $convertedAmount = $cost * $exchangeRate;
+            $finalAmount = $convertedAmount * (1 + ($markupPercentage / 100));
+
+            if (!$user->hasSufficientBalance($finalAmount)) {
                 // Cancel the activation on SMS-Activate
                 $this->smsActivate->cancelActivation($result['activation_id']);
 
@@ -114,7 +120,7 @@ class NumberController extends Controller
 
             // Deduct balance and create transaction
             $user->deductBalance(
-                $cost,
+                $finalAmount,
                 "Purchase virtual number for {$service->name}",
                 $purchasedNumber
             );

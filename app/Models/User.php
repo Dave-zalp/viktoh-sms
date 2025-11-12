@@ -154,7 +154,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Check if user has sufficient balance
      */
-    public function hasSufficientBalance($amount): bool
+    public function hasSufficientBalance(float $amount): bool
     {
         return $this->balance >= $amount;
     }
