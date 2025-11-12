@@ -119,7 +119,7 @@ class NumberController extends Controller
                 return response()->json([
                     'success' => false,
                     'message' => 'Insufficient balance',
-                    'required' => $cost,
+                    'required' => $finalAmount,
                     'available' => $user->balance
                 ], 400);
             }
