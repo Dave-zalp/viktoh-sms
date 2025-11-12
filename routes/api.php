@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NumberController;
@@ -84,15 +85,15 @@ Route::middleware('auth:sanctum')->prefix('auth')->group(function () {
     |--------------------------------------------------------------------------
     | Balance & Transaction Routes
     |--------------------------------------------------------------------------
-    */
-    Route::prefix('numbers')->group(function () {
-        Route::post('/purchase', [NumberController::class, 'purchase']); // POST /api/v1/numbers/purchase
-        Route::get('/my-numbers', [NumberController::class, 'myNumbers']); // GET /api/v1/numbers/my-numbers
-        Route::get('/{id}/status', [NumberController::class, 'getStatus']); // GET /api/v1/numbers/1/status
-        Route::post('/{id}/request-sms', [NumberController::class, 'requestAnotherSms']); // POST /api/v1/numbers/1/request-sms
-        Route::post('/{id}/cancel', [NumberController::class, 'cancel']); // POST /api/v1/numbers/1/cancel
-        Route::post('/{id}/complete', [NumberController::class, 'complete']); // POST /api/v1/numbers/1/complete
-    });
+    // */
+    // Route::prefix('numbers')->group(function () {
+    //     Route::post('/purchase', [NumberController::class, 'purchase']); // POST /api/v1/numbers/purchase
+    //     Route::get('/my-numbers', [NumberController::class, 'myNumbers']); // GET /api/v1/numbers/my-numbers
+    //     Route::get('/{id}/status', [NumberController::class, 'getStatus']); // GET /api/v1/numbers/1/status
+    //     Route::post('/{id}/request-sms', [NumberController::class, 'requestAnotherSms']); // POST /api/v1/numbers/1/request-sms
+    //     Route::post('/{id}/cancel', [NumberController::class, 'cancel']); // POST /api/v1/numbers/1/cancel
+    //     Route::post('/{id}/complete', [NumberController::class, 'complete']); // POST /api/v1/numbers/1/complete
+    // });
 
        /*
     |--------------------------------------------------------------------------
@@ -102,6 +103,10 @@ Route::middleware('auth:sanctum')->prefix('auth')->group(function () {
     Route::prefix('virtual-account')->group(function () {
         Route::post('/generate', [VirtualAccountController::class, 'generateVirtualAccount']); // POST /api/v1/virtual-account/generate
         Route::get('/', [VirtualAccountController::class, 'getVirtualAccount']); // For Admin Use
+    });
+
+    Route::prefix('transactions')->group(function () {
+        Route::get('/me', [TransactionController::class, 'myTransactions']);
     });
 
 
