@@ -318,7 +318,7 @@ class SmsActivateService
             try {
                 $params = [
                     'action' => 'getPricesExtended',
-                    'freePrice' => 'true'
+                    // 'freePrice' => 'true'
                 ];
 
                 if ($service) {
