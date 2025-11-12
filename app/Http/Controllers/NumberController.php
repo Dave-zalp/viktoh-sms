@@ -136,7 +136,7 @@ class NumberController extends Controller
                 'service_code' => $serviceCode,
                 'country_code' => $result['country_code'],
                 'operator' => $result['operator'],
-                'cost' => $cost,
+                'cost' => $finalAmount,
                 'currency' => $result['currency'],
                 'status' => 'waiting',
                 'activation_time' => $result['activation_time'],
