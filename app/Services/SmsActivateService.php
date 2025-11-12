@@ -644,7 +644,7 @@ class SmsActivateService
                 // Determine the base price to use
                 if (isset($priceData['freePriceMap']) && is_array($priceData['freePriceMap']) && count($priceData['freePriceMap']) > 0) {
                     // Get the lowest key (price) from freePriceMap
-                    $lowestPrice = min(array_keys($priceData['freePriceMap']));
+                    $lowestPrice = max(array_keys($priceData['freePriceMap']));
                     $priceData['original_cost'] = $lowestPrice;
                 } elseif (isset($priceData['cost'])) {
                     // Fallback if no freePriceMap exists
