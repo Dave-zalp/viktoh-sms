@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Models\PurchasedNumber;
@@ -50,7 +51,7 @@ class NumberController extends Controller
             ], 400);
         }
 
-        $user = auth()->user();
+        $user = User::where('id', auth()->id())->lockForUpdate()->first();
         $serviceCode = $request->service_code;
         $country = $request->country ?? config('sms-activate.default_country');
         $operator = $request->operator;
@@ -100,12 +101,11 @@ class NumberController extends Controller
             }
 
             // Check if user has sufficient balance
-            $cost = $result['cost'];
-            $exchangeRate = config('sms-activate.exchange_rate', 1500);
-            $markupPercentage = config('sms-activate.markup_percentage', 20);
+            $cost = (float)$result['cost'];
+            $exchangeRate = (float)config('sms-activate.exchange_rate', 1500);
+            $markupPercentage = (float)config('sms-activate.markup_percentage', 20);
 
-            $convertedAmount = $cost * $exchangeRate;
-            $finalAmount = $convertedAmount * (1 + ($markupPercentage / 100));
+            $finalAmount = round($cost * $exchangeRate * (1 + ($markupPercentage / 100)), 2);
 
             if (!$user->hasSufficientBalance($finalAmount)) {
                 $this->smsActivate->cancelActivation($result['activation_id']);
@@ -253,15 +253,33 @@ class NumberController extends Controller
                 ], 400);
             }
 
-            // Update if code received
-            if ($result['status'] === 'received' && $result['code']) {
-                $purchasedNumber->markAsReceived($result['code']);
+
+            $data = $result['data'];
+
+            $otpCode = null;
+            $smsText = null;
+
+            // Check for SMS
+            if (isset($data['sms']['code']) && !empty($data['sms']['code'])) {
+                $otpCode = $data['sms']['code'];
+                $smsText = $data['sms']['text'] ?? null;
+            }
+
+            // Check for Call (voice verification)
+            elseif (isset($data['call']['code']) && !empty($data['call']['code'])) {
+                $otpCode = $data['call']['code'];
+                $smsText = $data['call']['text'] ?? null;
+            }
+
+            if ($otpCode) {
+                $purchasedNumber->markAsReceived($otpCode, $smsText);
 
                 return response()->json([
                     'success' => true,
                     'data' => [
                         'status' => 'received',
-                        'otp_code' => $result['code'],
+                        'otp_code' => $otpCode,
+                        'sms_text' => $smsText,
                         'received_at' => $purchasedNumber->code_received_at->toDateTimeString(),
                     ]
                 ], 200);
@@ -271,7 +289,7 @@ class NumberController extends Controller
             return response()->json([
                 'success' => true,
                 'data' => [
-                    'status' => $result['status'],
+                    'status' => 'waiting',
                     'message' => 'Waiting for OTP code',
                     'expires_at' => $purchasedNumber->expires_at->toDateTimeString(),
                 ]

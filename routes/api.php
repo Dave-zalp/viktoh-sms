@@ -17,6 +17,8 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 
 Route::post('/webhook/paymentpoint', [WebhookController::class, 'paymentPointWebhook'])->withoutMiddleware(VerifyCsrfToken::class);
+Route::post('/webhook/sms-activate', [WebhookController::class, 'handleSmsWebhook'])->withoutMiddleware(VerifyCsrfToken::class);
+
 
 /*
 |--------------------------------------------------------------------------

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\VirtualAccount;
+use App\Models\PurchasedNumber;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -102,5 +103,67 @@ class WebhookController extends Controller
             ]);
             return response()->json(['message' => 'Webhook processing failed'], 500);
         }
+    }
+
+    public function handleSmsWebhook(Request $request)
+    {
+        // 1️⃣ Allowed IPs (from documentation)
+        $allowedIps = ['188.42.218.183', '142.91.156.119'];
+
+        if (!in_array($request->ip(), $allowedIps)) {
+            Log::warning('Unauthorized webhook access attempt', [
+                'ip' => $request->ip(),
+                'data' => $request->all()
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthorized IP'
+            ], 403);
+        }
+
+        // 2️⃣ Validate the incoming data
+        $validated = $request->validate([
+            'activationId' => 'required|integer',
+            'service' => 'required|string',
+            'text' => 'required|string',
+            'code' => 'nullable|string',
+            'country' => 'nullable|integer',
+            'receivedAt' => 'required|date'
+        ]);
+
+        // 3️⃣ Log the incoming webhook
+        Log::info('Received SMS webhook', [
+            'ip' => $request->ip(),
+            'payload' => $validated
+        ]);
+
+        // 4️⃣ Find the related purchased number
+        $purchasedNumber = PurchasedNumber::where('activation_id', $validated['activationId'])->first();
+
+        if (!$purchasedNumber) {
+            Log::error('Webhook activation ID not found', [
+                'activationId' => $validated['activationId']
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Activation not found'
+            ], 404);
+        }
+
+        // 5️⃣ Update record with SMS info
+        $purchasedNumber->update([
+            'sms_text' => $validated['text'],
+            'otp_code' => $validated['code'],
+            'status' => 'received',
+            'received_at' => $validated['receivedAt']
+        ]);
+
+        // 6️⃣ Respond success
+        return response()->json([
+            'success' => true,
+            'message' => 'Webhook received successfully'
+        ], 200);
     }
 }
