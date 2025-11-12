@@ -636,11 +636,13 @@ class SmsActivateService
      */
     protected function applyMarkupToPrices(array $data, $markupPercentage)
     {
+        $exchangeRate = config('sms-activate.exchange_rate', 1500);
+
         foreach ($data as $country => &$services) {
             foreach ($services as $service => &$priceData) {
                 if (isset($priceData['cost'])) {
                     $priceData['original_cost'] = $priceData['cost'];
-                    $priceData['cost'] = $priceData['cost'] * (1 + ($markupPercentage / 100));
+                    $priceData['cost'] = ($priceData['cost'] * (1 + ($markupPercentage / 100))) * $exchangeRate;
                 }
             }
         }

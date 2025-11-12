@@ -23,6 +23,8 @@ return [
 
     'markup_percentage' => env('SMS_ACTIVATE_MARKUP', 20), // Add 20% markup to API prices
 
+    'exchange_rate' => env('SMS_ACTIVATE_EXCHANGE_RATE', 1500), // Dollar to Naira
+
     /*
     |--------------------------------------------------------------------------
     | Default Settings
