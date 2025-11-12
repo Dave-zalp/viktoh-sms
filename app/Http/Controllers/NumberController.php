@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\PurchasedNumber;
 use App\Models\Service;
-use App\Services\SmsActivateService;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\Models\PurchasedNumber;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use App\Services\SmsActivateService;
 use Illuminate\Support\Facades\Validator;
 
 class NumberController extends Controller
@@ -36,6 +37,12 @@ class NumberController extends Controller
         ]);
 
         if ($validator->fails()) {
+            Log::warning('Purchase validation failed', [
+                'user_id' => auth()->id(),
+                'errors' => $validator->errors()->toArray(),
+                'request' => $request->all()
+            ]);
+
             return response()->json([
                 'success' => false,
                 'message' => 'Validation failed',
@@ -54,21 +61,37 @@ class NumberController extends Controller
             $service = Service::where('code', $serviceCode)->first();
 
             if (!$service) {
-                // Create service if it doesn't exist
                 $service = Service::create([
                     'code' => $serviceCode,
                     'name' => ucfirst($serviceCode),
                     'is_active' => true
                 ]);
+                Log::info('Service created', ['service_code' => $serviceCode]);
             }
 
             DB::beginTransaction();
+            Log::info('Starting number purchase', [
+                'user_id' => $user->id,
+                'service_code' => $serviceCode,
+                'country' => $country,
+                'operator' => $operator,
+                'max_price' => $maxPrice
+            ]);
 
             // Purchase number from SMS-Activate API
             $result = $this->smsActivate->getNumber($serviceCode, $country, $operator, $maxPrice);
 
             if (!$result['success']) {
                 DB::rollBack();
+                Log::error('Failed to purchase number from SMS-Activate API', [
+                    'user_id' => $user->id,
+                    'service_code' => $serviceCode,
+                    'country' => $country,
+                    'operator' => $operator,
+                    'max_price' => $maxPrice,
+                    'response' => $result
+                ]);
+
                 return response()->json([
                     'success' => false,
                     'message' => 'Failed to purchase number',
@@ -81,15 +104,18 @@ class NumberController extends Controller
             $exchangeRate = config('sms-activate.exchange_rate', 1500);
             $markupPercentage = config('sms-activate.markup_percentage', 20);
 
-            // Convert to user's currency and apply markup
             $convertedAmount = $cost * $exchangeRate;
             $finalAmount = $convertedAmount * (1 + ($markupPercentage / 100));
 
             if (!$user->hasSufficientBalance($finalAmount)) {
-                // Cancel the activation on SMS-Activate
                 $this->smsActivate->cancelActivation($result['activation_id']);
-
                 DB::rollBack();
+                Log::warning('Insufficient balance for number purchase', [
+                    'user_id' => $user->id,
+                    'required' => $finalAmount,
+                    'available' => $user->balance
+                ]);
+
                 return response()->json([
                     'success' => false,
                     'message' => 'Insufficient balance',
@@ -118,7 +144,13 @@ class NumberController extends Controller
                 'can_request_another_sms' => $result['can_get_another_sms'] == 1,
             ]);
 
-            // Deduct balance and create transaction
+            Log::info('Number purchased successfully', [
+                'user_id' => $user->id,
+                'purchased_number_id' => $purchasedNumber->id,
+                'activation_id' => $purchasedNumber->activation_id,
+                'cost' => $finalAmount
+            ]);
+
             $user->deductBalance(
                 $finalAmount,
                 "Purchase virtual number for {$service->name}",
@@ -150,6 +182,13 @@ class NumberController extends Controller
 
         } catch (\Exception $e) {
             DB::rollBack();
+            Log::error('Exception during number purchase', [
+                'user_id' => $user->id ?? null,
+                'service_code' => $serviceCode ?? null,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to purchase number',
