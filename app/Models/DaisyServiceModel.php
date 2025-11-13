@@ -15,4 +15,11 @@ class DaisyServiceModel extends Model
         'name',
         'cost',
     ];
+
+   public static function getCostByKeyName(string $keyName): ?float
+    {
+        $service = self::where('key_name', $keyName)->first();
+
+        return $service?->cost ? (float) $service->cost : null;
+    }
 }

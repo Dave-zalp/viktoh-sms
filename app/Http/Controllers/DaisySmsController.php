@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DaisyServiceModel;
 use App\Models\PurchasedNumber;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -88,7 +89,7 @@ class DaisySmsController extends Controller
             }
 
             // Calculate cost
-            $cost = (float)$result['cost'];
+            $cost = DaisyServiceModel::getCostByKeyName($serviceCode);
             $exchangeRate = (float)config('daisyrent.exchange_rate', 1500);
             $markupPercentage = (float)config('daisyrent.markup_percentage', 20);
 
@@ -113,14 +114,14 @@ class DaisySmsController extends Controller
             // Save purchase record
             $rentedNumber = PurchasedNumber::create([
                 'user_id'      => $user->id,
-                'rental_id'    => $result['rental_id'],
+                'activation_id'    => $result['rental_id'],
                 'phone_number' => $result['phone_number'],
                 'service_code' => $serviceCode,
+                'service_id'   => 187,
                 'cost'         => $finalAmount,
-                'currency'     => 'NGN',
                 'status'       => 'waiting',
-                'started_at'   => now(),
                 'expires_at'   => $expiresAt,
+                'provider' => 'daisysms'
             ]);
 
             // Deduct balance
@@ -138,12 +139,13 @@ class DaisySmsController extends Controller
                 'data' => [
                     'rented_number' => [
                         'id'           => $rentedNumber->id,
-                        'rental_id'    => $rentedNumber->rental_id,
+                        'activation_id'    => $rentedNumber->activation_id,
                         'phone_number' => $rentedNumber->phone_number,
                         'service'      => $serviceCode,
                         'cost'         => $rentedNumber->cost,
                         'status'       => $rentedNumber->status,
                         'expires_at'   => $rentedNumber->expires_at->toDateTimeString(),
+                        'provider' => $rentedNumber->provider,
                     ],
                     'balance' => [
                         'current' => $user->balance,
