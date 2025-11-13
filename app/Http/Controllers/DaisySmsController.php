@@ -176,13 +176,70 @@ class DaisySmsController extends Controller
     /**
      * Get code for rented number
      */
-    public function getCode(Request $request)
+    public function getCode($id)
     {
-        $request->validate(['activation_id' => 'required|integer']);
 
-        $result = $this->daisy->getStatus($request->activation_id);
+        $user = auth()->user();
 
-        return response()->json($result);
+         $purchasedNumber = PurchasedNumber::where('id', $id)
+                ->where('user_id', $user->id)
+                ->first();
+
+        if (!$purchasedNumber) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Number not found'
+                ], 404);
+            }
+
+            // If already received, return stored code
+            if ($purchasedNumber->status === 'received') {
+                return response()->json([
+                    'success' => true,
+                    'data' => [
+                        'status' => 'received',
+                        'otp_code' => $purchasedNumber->otp_code,
+                        'sms_text' => $purchasedNumber->sms_text,
+                        'received_at' => $purchasedNumber->code_received_at->toDateTimeString(),
+                    ]
+                ], 200);
+            }
+
+            // Check if expired
+            if ($purchasedNumber->isExpired()) {
+                $purchasedNumber->markAsExpired();
+
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Activation expired',
+                    'status' => 'expired'
+                ], 400);
+            }
+
+            $result = $this->daisy->getStatus($purchasedNumber->activation_id);
+
+            if (!$result['success']) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Failed to get status',
+                    'error' => $result['error'] ?? 'Unknown error'
+                ], 400);
+            }
+
+            $purchasedNumber->update([
+                'otp_code' => $result['code'],
+                'sms_text' => $result['text'] ?? null,
+                'status' => 'received',
+                'code_received_at' => now(),
+            ]);
+
+            return response()->json([
+                    'success' => true,
+                    'data' => [
+                        'status' => 'received',
+                        'otp_code' => $result['code'],
+                    ]
+                ], 200);
     }
 
     /**

@@ -121,7 +121,7 @@ Route::middleware('auth:sanctum')->prefix('auth')->group(function () {
         Route::get('/balance', [DaisySmsController::class, 'balance']);
         Route::get('/services', [DaisySmsController::class, 'getServices']);
         Route::post('/rent', [DaisySmsController::class, 'rentNumber']);
-        Route::post('/get-code', [DaisySmsController::class, 'getCode']);
+        Route::get('/get-code', [DaisySmsController::class, 'getCode']);
         Route::post('/mark-done', [DaisySmsController::class, 'markDone']);
         Route::post('/cancel', [DaisySmsController::class, 'cancel']);
     });
