@@ -72,7 +72,8 @@ class DaisySmsService
             $service = $value[$countryCode];
 
             $originalCost = (float) $service['cost'];
-            $markupAmount = $originalCost * ($markupPercentage / 100);
+            $dollar_rate = 1500;
+            $markupAmount = $originalCost * ($markupPercentage / 100) * $dollar_rate;
             $finalCost = round($originalCost + $markupAmount, 2);
 
             $services[] = [
@@ -80,10 +81,7 @@ class DaisySmsService
                 'service_name'   => $service['name'],
                 'original_cost'  => $originalCost,
                 'final_cost'     => $finalCost,
-                'ltr_price'      => (float) $service['ltrPrice'],
-                'available'      => $service['count'],
                 'time_to_live'   => $service['ttl'],
-                'repeatable'     => $service['repeatable'] ?? false,
             ];
         }
 
