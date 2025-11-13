@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class WebhookController extends Controller
 {
@@ -169,50 +171,68 @@ class WebhookController extends Controller
 
 
     public function handleDaisyWebhook(Request $request)
-        {
-            Log::info('DaisySMS Webhook Received', [
-                'payload' => $request->all()
+    {
+        Log::info('DaisySMS Webhook Received', ['payload' => $request->all()]);
+
+        // Manual validator (Laravel's validate() throws 422)
+        $validator = Validator::make($request->all(), [
+            'activationId' => 'required|numeric',
+            'messageId'    => 'required|numeric',
+            'service'      => 'required|string',
+            'text'         => 'nullable|string',
+            'code'         => 'nullable|string',
+            'country'      => 'required|numeric',
+            'receivedAt'   => 'required|date',
+        ]);
+
+        if ($validator->fails()) {
+            Log::warning('DaisySMS Webhook: Invalid webhook data', [
+                'errors' => $validator->errors()->toArray(),
             ]);
 
-            // Validate webhook data
-            $validated = $request->validate([
-                'activationId' => 'required|numeric',
-                'messageId'    => 'required|numeric',
-                'service'      => 'required|string',
-                'text'         => 'nullable|string',
-                'code'         => 'nullable|string',
-                'country'      => 'required|numeric',
-                'receivedAt'   => 'required|date',
+            return response()->json(['success' => true], 200); // avoid Daisy retry
+        }
+
+        $validated = $validator->validated();
+
+        // Find rented number
+        $number = PurchasedNumber::where('activation_id', $validated['activationId'])->first();
+
+        if (!$number) {
+            Log::warning('DaisySMS Webhook: activation_id not found', [
+                'activationId' => $validated['activationId'],
             ]);
 
-            // Find the purchased number
-            $number = PurchasedNumber::where('activation_id', $validated['activationId'])->first();
+            return response()->json(['success' => true], 200); // ACK to avoid retries
+        }
 
-            if (!$number) {
-                Log::warning('DaisySMS Webhook: rental_id not found', [
-                    'activationId' => $validated['activationId'],
-                ]);
-
-                return response()->json(['success' => false, 'message' => 'Number not found'], 404);
-            }
-
-            // 5️⃣ Update record with SMS info
-            $number->update([
-                'sms_text' => $validated['text'],
-                'otp_code' => $validated['code'],
-                'status' => 'received',
-                'country_code' => $validated['country'],
-                'code_received_at' => $validated['receivedAt'],
-                'daisy_service_name' => $validated['service'],
-            ]);
-
-
-            Log::info('DaisySMS Webhook processed successfully', [
-                'purchased_number_id' => $number->id,
-                'actiation_id'        => $validated['activationId']
+        // Prevent double processing
+        if ($number->status === 'received') {
+            Log::info('DaisySMS Webhook: duplicate SMS ignored', [
+                'activationId' => $validated['activationId'],
+                'messageId'    => $validated['messageId'],
             ]);
 
             return response()->json(['success' => true], 200);
         }
+
+        // Update
+        $number->update([
+            'sms_text'         => $validated['text'],
+            'otp_code'         => $validated['code'],
+            'status'           => 'received',
+            'country_code'     => $validated['country'],
+            'code_received_at' => Carbon::parse($validated['receivedAt']),
+            'daisy_service_name' => $validated['service'],
+        ]);
+
+        Log::info('DaisySMS Webhook processed successfully', [
+            'purchased_number_id' => $number->id,
+            'activation_id'       => $validated['activationId'],
+        ]);
+
+        return response()->json(['success' => true], 200);
+    }
+
 
 }
