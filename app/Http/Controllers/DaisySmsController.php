@@ -121,7 +121,11 @@ class DaisySmsController extends Controller
                 'cost'         => $finalAmount,
                 'status'       => 'waiting',
                 'expires_at'   => $expiresAt,
-                'provider' => 'daisysms'
+                'country_code'=> 187,
+                'operator'    => 'any',
+                'currency'    => 840,
+                'provider' => 'daisysms',
+                'can_request_another_sms' => 0
             ]);
 
             // Deduct balance
