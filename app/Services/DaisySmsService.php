@@ -79,7 +79,6 @@ class DaisySmsService
             $services[] = [
                 'service_code'   => $serviceCode,
                 'service_name'   => $service['name'],
-                'original_cost'  => $originalCost,
                 'final_cost'     => $finalCost,
                 'time_to_live'   => $service['ttl'],
             ];
