@@ -95,18 +95,16 @@ class DaisySmsService
     /**
      * Rent a new USA number for a specific service
      */
-    public function rentNumber(string $service, float $maxPrice = 5.5)
-    {
-        $response = Http::get($this->baseUrl, [
-            'api_key'   => $this->apiKey,
-            'action'    => 'getNumber',
-            'service'   => $service,
-            'max_price' => $maxPrice,
-            'country'   => 187, // USA country code in Daisy API
-        ]);
+     public function rentNumber(string $service, float $maxPrice = 5.5): array
+        {
+            $response = Http::get($this->baseUrl, [
+                'api_key'   => $this->apiKey,
+                'action'    => 'getNumber',
+                'service'   => $service,
+            ]);
 
-        return $this->parseApiResponse($response->body());
-    }
+            return $this->parseApiResponse($response->body());
+        }
 
     /**
      * Get SMS code for the rented number

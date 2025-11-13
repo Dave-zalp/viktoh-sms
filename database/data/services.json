@@ -1,0 +1,2860 @@
+{
+    "187": {
+        "2redbeans": {
+            "name": "2RedBeans",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "auw": {
+            "name": "3Fun",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "7eleven": {
+            "name": "7-Eleven",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "aarp": {
+            "name": "AARP Rewards",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "acima": {
+            "name": "Acima",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "acorns": {
+            "name": "Acorns",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "advanceamerica": {
+            "name": "Advance America",
+            "count": 100,
+            "cost": "0.25",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "aegpresents ": {
+            "name": "AEG Presents",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "af247": {
+            "name": "af247.com",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "affirm": {
+            "name": "Affirm",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "afterpay": {
+            "name": "Afterpay",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "airbaton": {
+            "name": "Airbaton.net",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "albert": {
+            "name": "Albert.com",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "albertsons": {
+            "name": "Albertsons / Safeway",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "alibabacloud": {
+            "name": "Alibaba Cloud",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "alipay": {
+            "name": "Alipay",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "ally": {
+            "name": "Ally",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "am": {
+            "name": "Amazon / AWS",
+            "count": 100,
+            "cost": "1.00",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "amex": {
+            "name": "Amex",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "anthropologie": {
+            "name": "Anthropologie",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "pm": {
+            "name": "AOL",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "wx": {
+            "name": "Apple",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "archer": {
+            "name": "Archer app",
+            "count": 100,
+            "cost": "0.30",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "ashleymadison": {
+            "name": "Ashley Madison",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "aspiration": {
+            "name": "Aspiration / GreenFi",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "astrafi": {
+            "name": "Astrafi.com",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "anl": {
+            "name": "Attapoll",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "axos": {
+            "name": "Axos Bank",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "axs": {
+            "name": "AXS",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "qv": {
+            "name": "Badoo",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "boa": {
+            "name": "Bank of America",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "bankmobile": {
+            "name": "BankMobile",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "baselane": {
+            "name": "Baselane",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "bcbs": {
+            "name": "BCBS",
+            "count": 100,
+            "cost": "0.05",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "beehiiv": {
+            "name": "Beehiiv",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "bdx": {
+            "name": "Benjamin",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "bestbuy": {
+            "name": "Best Buy",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "betfanatics": {
+            "name": "Bet Fanatics",
+            "count": 100,
+            "cost": "0.70",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "ie": {
+            "name": "Bet365",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "betr": {
+            "name": "Betr",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "biltrewards": {
+            "name": "Bilt Rewards",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "binanceus": {
+            "name": "Binance.US",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "blastbucks": {
+            "name": "Blastbucks",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "bz": {
+            "name": "Blizzard / Battle.net",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "blk": {
+            "name": "BLK",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "bluesky": {
+            "name": "Bluesky",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "bluevine": {
+            "name": "Bluevine",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "bmoalto": {
+            "name": "BMO Alto",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "bmoharris": {
+            "name": "BMO Harris",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "bossmoney": {
+            "name": "Boss Money",
+            "count": 100,
+            "cost": "0.35",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "bossrevolution": {
+            "name": "Boss Revolution",
+            "count": 100,
+            "cost": "0.30",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "brandedsurveys": {
+            "name": "Branded Surveys",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "bridgemoney": {
+            "name": "BridgeMoney.co",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "bright": {
+            "name": "Bright Capital",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "mo": {
+            "name": "Bumble",
+            "count": 100,
+            "cost": "0.18",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "burner": {
+            "name": "Burner",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "butcherbox": {
+            "name": "ButcherBox",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "caesars": {
+            "name": "Caesars",
+            "count": 100,
+            "cost": "0.70",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "apr": {
+            "name": "Capital One",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "it": {
+            "name": "Cash App",
+            "count": 100,
+            "cost": "5.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "cashloansexpress": {
+            "name": "CashLoans Express",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "centurylink": {
+            "name": "CenturyLink",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "chargepoint": {
+            "name": "ChargePoint",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "chase": {
+            "name": "Chase",
+            "count": 100,
+            "cost": "0.30",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "afk": {
+            "name": "Chevron / TexaCo",
+            "count": 100,
+            "cost": "0.25",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "chickfila": {
+            "name": "Chick-fil-A",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "chime": {
+            "name": "Chime",
+            "count": 100,
+            "cost": "1.60",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "chipotle": {
+            "name": "Chipotle",
+            "count": 100,
+            "cost": "0.05",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "ir": {
+            "name": "Chispa",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "chumbacasino": {
+            "name": "Chumba Casino",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "circlek": {
+            "name": "Circle K",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "citi": {
+            "name": "Citi",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "citizens": {
+            "name": "Citizens",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "classpass": {
+            "name": "ClassPass",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "acz": {
+            "name": "Claude AI",
+            "count": 100,
+            "cost": "0.30",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "cleo": {
+            "name": "Cleo",
+            "count": 100,
+            "cost": "0.25",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "abb": {
+            "name": "Coca-Cola",
+            "count": 100,
+            "cost": "0.05",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "cod": {
+            "name": "CoD",
+            "count": 100,
+            "cost": "0.05",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "codashop": {
+            "name": "Codashop",
+            "count": 100,
+            "cost": "0.30",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "cmb": {
+            "name": "Coffee Meets Bagel",
+            "count": 100,
+            "cost": "0.18",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "re": {
+            "name": "Coinbase",
+            "count": 100,
+            "cost": "0.25",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "cpulse": {
+            "name": "College Pulse",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "courtyard": {
+            "name": "Courtyard.io",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "wc": {
+            "name": "Craigslist",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "karma": {
+            "name": "Credit Karma",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "sx": {
+            "name": "CrowdTap",
+            "count": 100,
+            "cost": "0.14",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "cryptocom": {
+            "name": "Crypto.com",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "current": {
+            "name": "Current.com",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "currently": {
+            "name": "Currently.com / AT&T Email",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "cvs": {
+            "name": "CVS",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "dave": {
+            "name": "Dave.com",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "zk": {
+            "name": "Deliveroo",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "dilmil": {
+            "name": "Dil Mil",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "dingcom": {
+            "name": "Ding.com",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "dingdingding": {
+            "name": "DingDingDing",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "dingtone": {
+            "name": "Dingtone",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "ds": {
+            "name": "Discord",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "discover": {
+            "name": "Discover Bank",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "docusign": {
+            "name": "Docusign",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "dollargeneral": {
+            "name": "Dollar General",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "ac": {
+            "name": "DoorDash",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "doublelist": {
+            "name": "DoubleList",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "dovetail": {
+            "name": "Dovetail",
+            "count": 100,
+            "cost": "0.25",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "draftkings": {
+            "name": "DraftKings",
+            "count": 100,
+            "cost": "0.70",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "dripshop": {
+            "name": "DripShop",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "dunkin": {
+            "name": "Dunkin Donuts",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "dutchbros": {
+            "name": "Dutch Bros",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "etrade": {
+            "name": "E*TRADE",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "eastwestbank": {
+            "name": "East West Bank",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "dh": {
+            "name": "eBay",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "uf": {
+            "name": "Eneba",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "epicpull": {
+            "name": "EpicPull",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "espnbet": {
+            "name": "ESPN BET",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "etoro": {
+            "name": "eToro",
+            "count": 100,
+            "cost": "0.30",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "alq": {
+            "name": "Etsy",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "everbank": {
+            "name": "EverBank",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "evgo": {
+            "name": "EVgo",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "experian": {
+            "name": "Experian",
+            "count": 100,
+            "cost": "1.00",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "fb": {
+            "name": "Facebook",
+            "count": 100,
+            "cost": "1.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "fanaticslive": {
+            "name": "Fanatics Live",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "fanduel": {
+            "name": "fanduel",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "feastables": {
+            "name": "Feastables",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "fedex": {
+            "name": "FedEx",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "ws": {
+            "name": "Feeld",
+            "count": 100,
+            "cost": "0.08",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "feels": {
+            "name": "Feels App",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "fetchrewards": {
+            "name": "Fetch Rewards",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "fet": {
+            "name": "FetLife",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "fidelity": {
+            "name": "Fidelity",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "netbenefits": {
+            "name": "Fidelity NetBenefits",
+            "count": 100,
+            "cost": "1.00",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "fifththirdbank": {
+            "name": "Fifth Third Bank",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "finnfox": {
+            "name": "FinnFox / EiLoan",
+            "count": 100,
+            "cost": "0.75",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "firstnationalbank": {
+            "name": "First National Bank",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "fivesurveys": {
+            "name": "Five Surveys",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "cn": {
+            "name": "Fiverr",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "flip": {
+            "name": "Flip",
+            "count": 100,
+            "cost": "1.00",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "footlocker": {
+            "name": "Foot Locker",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "foundcom": {
+            "name": "Found.com",
+            "count": 100,
+            "cost": "0.30",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "frisbee": {
+            "name": "Frisbee Rewards",
+            "count": 100,
+            "cost": "0.25",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "frostbank": {
+            "name": "Frost Bank",
+            "count": 100,
+            "cost": "1.00",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "futuregreen": {
+            "name": "Future.green",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "gaint": {
+            "name": "Gaintplay",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "gala": {
+            "name": "GALA",
+            "count": 100,
+            "cost": "0.06",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "gameflip": {
+            "name": "Gameflip",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "gbank": {
+            "name": "GBank",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "gcx": {
+            "name": "GCX",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "gemini": {
+            "name": "Gemini",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "getholdings": {
+            "name": "GetHoldings",
+            "count": 100,
+            "cost": "1.00",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "abk": {
+            "name": "GMX.com",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "go2bank": {
+            "name": "Go2Bank",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "godaddy": {
+            "name": "GoDaddy",
+            "count": 100,
+            "cost": "0.30",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "gofundme": {
+            "name": "GoFundMe",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "golden1": {
+            "name": "Golden1",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "go": {
+            "name": "Google / Gmail / Youtube",
+            "count": 100,
+            "cost": "1.00",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "googlechat": {
+            "name": "Google Chat",
+            "count": 100,
+            "cost": "0.35",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "gf": {
+            "name": "Google Voice",
+            "count": 100,
+            "cost": "0.60",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "ajn": {
+            "name": "Gopuff",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "greendot": {
+            "name": "Green Dot",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "greenlight": {
+            "name": "Greenlight.com",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "grifin": {
+            "name": "Grifin.com",
+            "count": 100,
+            "cost": "0.12",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "yw": {
+            "name": "Grindr",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "happn": {
+            "name": "happn",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "hardrockbet": {
+            "name": "Hard Rock Bet",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "healthsafe": {
+            "name": "HealthSafe (Optum)",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "heycash": {
+            "name": "Hey Cash",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "rt": {
+            "name": "Hily",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "vz": {
+            "name": "Hinge",
+            "count": 100,
+            "cost": "0.30",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "hitch": {
+            "name": "Hitch",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "hking": {
+            "name": "HKING",
+            "count": 100,
+            "cost": "0.06",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "hopper": {
+            "name": "Hopper",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "hostinger": {
+            "name": "Hostinger",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "hotstreak": {
+            "name": "HotStreak",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "hud": {
+            "name": "HUD",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "huntington": {
+            "name": "Huntington",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "ibotta": {
+            "name": "Ibotta",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "imprint": {
+            "name": "Imprint",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "indeed": {
+            "name": "Indeed",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "inkind": {
+            "name": "inKind",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "innago": {
+            "name": "Innago",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "instacart": {
+            "name": "Instacart",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "ig": {
+            "name": "Instagram",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "intuit": {
+            "name": "Intuit",
+            "count": 100,
+            "cost": "0.30",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "agk": {
+            "name": "Ipsos iSay",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "za": {
+            "name": "JD.com",
+            "count": 100,
+            "cost": "0.08",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "jointrue": {
+            "name": "Jointrue.com",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "juno": {
+            "name": "Juno",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "kt": {
+            "name": "KakaoTalk",
+            "count": 100,
+            "cost": "0.05",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "kalshi": {
+            "name": "Kalshi",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "keitaro": {
+            "name": "Keitaro",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "keybank": {
+            "name": "Keybank",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "kikoff": {
+            "name": "Kikoff",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "klarna": {
+            "name": "Klarna",
+            "count": 100,
+            "cost": "1.00",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "klover": {
+            "name": "Klover",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "klutchcard": {
+            "name": "Klutch",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "koho": {
+            "name": "Koho.ca",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "kraken": {
+            "name": "Kraken",
+            "count": 100,
+            "cost": "1.00",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "kudos": {
+            "name": "Kudos",
+            "count": 100,
+            "cost": "0.12",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "laa": {
+            "name": "LAA",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "riot": {
+            "name": "League of Legends",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "lego": {
+            "name": "Lego Offer Hub",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "lightningai": {
+            "name": "Lightning AI",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "lightstream": {
+            "name": "LightStream.com",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "me": {
+            "name": "LINE messenger",
+            "count": 100,
+            "cost": "0.05",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "tn": {
+            "name": "LinkedIn",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "ex": {
+            "name": "Linode",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "lowes": {
+            "name": "Lowe's",
+            "count": 100,
+            "cost": "0.25",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "luvs": {
+            "name": "Luvs",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "tu": {
+            "name": "Lyft",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "lysted": {
+            "name": "Lysted",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "manus": {
+            "name": "Manus.im",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "marylous": {
+            "name": "Marylous Coffee",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "abf": {
+            "name": "Match.com",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "dg": {
+            "name": "Mercari",
+            "count": 100,
+            "cost": "0.25",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "merrilledge": {
+            "name": "Merrill Edge",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "mm": {
+            "name": "Microsoft / Outlook / Hotmail",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "qo": {
+            "name": "MoneyLion",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "bgj": {
+            "name": "MoonPay",
+            "count": 100,
+            "cost": "0.30",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "mygiftcardredemption": {
+            "name": "MyGiftCardRedemption",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "naver": {
+            "name": "Naver",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "navy": {
+            "name": "Navy Federal",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "aft": {
+            "name": "Neocrypto",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "netpayadvance": {
+            "name": "Net Pay Advance",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "netflix": {
+            "name": "Netflix",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "netspend": {
+            "name": "Netspend",
+            "count": 100,
+            "cost": "1.00",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "nexon": {
+            "name": "Nexon",
+            "count": 100,
+            "cost": "0.05",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "nextdoor": {
+            "name": "Nextdoor",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "nfcu": {
+            "name": "NFCU",
+            "count": 100,
+            "cost": "1.00",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "nicesurveys": {
+            "name": "Nice Surveys",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "ew": {
+            "name": "Nike",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "noonlight": {
+            "name": "Noonlight",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "northone": {
+            "name": "North One",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "novo": {
+            "name": "Novo",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "nyc": {
+            "name": "NYC",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "zm": {
+            "name": "OfferUp",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "vm": {
+            "name": "OkCupid",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "oneapp": {
+            "name": "One.app / Onepay",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "oneforma": {
+            "name": "OneForma",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "onemain": {
+            "name": "OneMain Financial",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "onlinecheckwriter": {
+            "name": "OnlineCheckWriter",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "dr": {
+            "name": "OpenAI / ChatGPT",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "openbank": {
+            "name": "Openbank",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "openphone": {
+            "name": "OpenPhone",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "opentable": {
+            "name": "OpenTable",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "ourtime": {
+            "name": "OurTime",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "outlier": {
+            "name": "Outlier AI",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "ozk": {
+            "name": "OZK",
+            "count": 100,
+            "cost": "1.00",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "patientfi": {
+            "name": "PatientFi",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "payoneer": {
+            "name": "Payoneer",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "ts": {
+            "name": "PayPal",
+            "count": 100,
+            "cost": "0.60",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "pelago": {
+            "name": "Pelago",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "penfed": {
+            "name": "PenFed",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "perpay": {
+            "name": "Perpay",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "phoner": {
+            "name": "Phoner",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "fp": {
+            "name": "Phound",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "pinata": {
+            "name": "Pinata.ai",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "pinger": {
+            "name": "Pinger",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "pingme": {
+            "name": "PingMe",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "pixels": {
+            "name": "Pixels.xyz",
+            "count": 100,
+            "cost": "0.09",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "plaid": {
+            "name": "Plaid",
+            "count": 100,
+            "cost": "1.00",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "playful": {
+            "name": "Playful Rewards",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "pf": {
+            "name": "Plenty of Fish",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "pnc": {
+            "name": "PNC",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "pogo": {
+            "name": "Pogo",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "oz": {
+            "name": "Poshmark",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "primeopinion": {
+            "name": "Prime Opinion",
+            "count": 100,
+            "cost": "0.12",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "prolific": {
+            "name": "Prolific",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "public": {
+            "name": "Public.com",
+            "count": 100,
+            "cost": "0.30",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "pureminutes": {
+            "name": "Pure Minutes",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "pvc": {
+            "name": "PVC",
+            "count": 100,
+            "cost": "0.30",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "qantas": {
+            "name": "Qantas",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "raisin": {
+            "name": "Raisin",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "r4r": {
+            "name": "Rate4Rewards",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "raya": {
+            "name": "Raya The App",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "ajj": {
+            "name": "Rebtel",
+            "count": 100,
+            "cost": "0.05",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "rebtel": {
+            "name": "Rebtel",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "reddit": {
+            "name": "Reddit",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "rednote": {
+            "name": "RedNote / Xiaohongshu",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "regions": {
+            "name": "Regions",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "relayfi": {
+            "name": "Relayfi.com",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "resy": {
+            "name": "Resy.com",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "revel": {
+            "name": "Revel",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "revolut": {
+            "name": "Revolut",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "revtrax": {
+            "name": "RevTrax",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "riamoneytransfer": {
+            "name": "Ria Money Transfer",
+            "count": 100,
+            "cost": "0.30",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "ring4": {
+            "name": "Ring4",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "river": {
+            "name": "River",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "robinhood": {
+            "name": "Robinhood",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "roblox": {
+            "name": "Roblox",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "rocketreach": {
+            "name": "Rocketreach",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "roomies": {
+            "name": "Roomies",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "rovemiles": {
+            "name": "Rove Miles",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "rumble": {
+            "name": "Rumble",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "samsclub": {
+            "name": "Sam's Club",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "lj": {
+            "name": "Santander",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "schwab": {
+            "name": "Schwab",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "screenconnect": {
+            "name": "ScreenConnect",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "are": {
+            "name": "Seated",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "seatgeek": {
+            "name": "SeatGeek",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "unlisted": {
+            "name": "Service not listed",
+            "count": 100,
+            "cost": "1.00",
+            "ltrPrice": "0.40",
+            "repeatable": false
+        },
+        "sezzle": {
+            "name": "Sezzle",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "aez": {
+            "name": "SHEIN",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "shiftkey": {
+            "name": "ShiftKey",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "shippingeasy": {
+            "name": "ShippingEasy",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "shop": {
+            "name": "Shop.app",
+            "count": 100,
+            "cost": "0.30",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "shopback": {
+            "name": "ShopBack",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "sideline": {
+            "name": "Sideline / Index by Pinger",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "bw": {
+            "name": "Signal",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "skout": {
+            "name": "Skout",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "aqt": {
+            "name": "Skrill",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "slingmoney": {
+            "name": "Sling Money",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "snakzy": {
+            "name": "Snakzy",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "snapfinance": {
+            "name": "Snap Finance",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "fu": {
+            "name": "Snapchat",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "snaplii": {
+            "name": "Snaplii",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.40",
+            "repeatable": false
+        },
+        "snipp": {
+            "name": "Snipp",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "sofi": {
+            "name": "SoFi Bank",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "sonetel": {
+            "name": "Sonetel",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "soulapp": {
+            "name": "SoulAPP",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "splitdrop": {
+            "name": "SplitDrop",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "spruce": {
+            "name": "Sprucemoney.com",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "bbg": {
+            "name": "Square",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "stash": {
+            "name": "Stash.com",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "mt": {
+            "name": "Steam",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "step": {
+            "name": "Step",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "stir": {
+            "name": "Stir",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "storecash": {
+            "name": "StoreCash",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "strike": {
+            "name": "Strike",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "stripe": {
+            "name": "Stripe",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "sunbit": {
+            "name": "Sunbit",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "super": {
+            "name": "Super.com",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "swag": {
+            "name": "Swagbucks / InboxDollars / MyPoints / ySense / Noones / Adgate Survey",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "swittch": {
+            "name": "Swittch",
+            "count": 100,
+            "cost": "0.12",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "taimi": {
+            "name": "Taimi",
+            "count": 100,
+            "cost": "0.30",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "taobao": {
+            "name": "Taobao / Alibaba",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "tcgplayer": {
+            "name": "TCGplayer",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "tdcom": {
+            "name": "TD.com",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "tg": {
+            "name": "Telegram",
+            "count": 100,
+            "cost": "1.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "ep": {
+            "name": "Temu",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "tencent": {
+            "name": "Tencent QQ",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "asf": {
+            "name": "TextFree",
+            "count": 100,
+            "cost": "0.08",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "textla": {
+            "name": "Textla",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "textr": {
+            "name": "Textr",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "threads": {
+            "name": "Threads",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "gp": {
+            "name": "Ticketmaster",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "ticketswap": {
+            "name": "TicketSwap",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "lf": {
+            "name": "TikTok",
+            "count": 100,
+            "cost": "0.30",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "timewall": {
+            "name": "Timewall",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "oi": {
+            "name": "Tinder",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "topsurveys": {
+            "name": "Top Surveys / Earnstar",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "tradify": {
+            "name": "Tradify",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "tradingcom": {
+            "name": "Trading.com",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "transunion": {
+            "name": "TransUnion",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "trapcall": {
+            "name": "TrapCall",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "truist": {
+            "name": "Truist",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "ada": {
+            "name": "Truth Social",
+            "count": 100,
+            "cost": "0.08",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "turbotenant": {
+            "name": "TurboTenant",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "twilio": {
+            "name": "Twilio",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "hb": {
+            "name": "Twitch",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "tw": {
+            "name": "Twitter",
+            "count": 100,
+            "cost": "0.12",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "usbank": {
+            "name": "U.S. Bank",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "ub": {
+            "name": "Uber",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "ufb": {
+            "name": "UFBdirect.com",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "unbank": {
+            "name": "Unbank",
+            "count": 100,
+            "cost": "0.40",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "unitedairlines": {
+            "name": "United Airlines",
+            "count": 100,
+            "cost": "0.60",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "upaynet": {
+            "name": "UPAYNET",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "uphold": {
+            "name": "Uphold",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "uprova": {
+            "name": "Uprova",
+            "count": 100,
+            "cost": "1.00",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "upward": {
+            "name": "Upward",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "upwork": {
+            "name": "Upwork",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "usaa": {
+            "name": "USAA",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "usalliance": {
+            "name": "USALLIANCE",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "varo": {
+            "name": "Varo",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "yy": {
+            "name": "Venmo",
+            "count": 100,
+            "cost": "0.30",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "veo": {
+            "name": "Veoride",
+            "count": 100,
+            "cost": "0.25",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "verasight": {
+            "name": "Verasight",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "vercel": {
+            "name": "Vercel",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "veriswap": {
+            "name": "Veriswap",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "vi": {
+            "name": "Viber",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "vinted": {
+            "name": "Vinted",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "vision_engage": {
+            "name": "Vision Engage",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "vitacost": {
+            "name": "Vitacost",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "vk": {
+            "name": "VKontakte",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "wallethub": {
+            "name": "WalletHub",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "wr": {
+            "name": "Walmart",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "walmartmoneycard": {
+            "name": "Walmart MoneyCard",
+            "count": 100,
+            "cost": "0.25",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "wayfair": {
+            "name": "Wayfair",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "waymo": {
+            "name": "Waymo",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "wealthfront": {
+            "name": "Wealthfront",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "alf": {
+            "name": "Webull",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "wb": {
+            "name": "WeChat",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "weebly": {
+            "name": "Weebly",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "wfargo": {
+            "name": "Wells Fargo",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "wert": {
+            "name": "Wert",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "wu": {
+            "name": "Western Union",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "wetalk": {
+            "name": "WeTalk",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "whatnot": {
+            "name": "Whatnot",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "wa": {
+            "name": "WhatsApp",
+            "count": 100,
+            "cost": "0.90",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "wheely": {
+            "name": "Wheely",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "wingstop": {
+            "name": "Wingstop",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "bo": {
+            "name": "Wise",
+            "count": 100,
+            "cost": "0.80",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "rr": {
+            "name": "Wolt",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "wonder": {
+            "name": "Wonder.com",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "mb": {
+            "name": "Yahoo",
+            "count": 100,
+            "cost": "0.15",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "yendo": {
+            "name": "Yendo",
+            "count": 100,
+            "cost": "1.00",
+            "ltrPrice": "0.40",
+            "repeatable": true
+        },
+        "mj": {
+            "name": "Zalo",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": false
+        },
+        "zillow": {
+            "name": "Zillow",
+            "count": 100,
+            "cost": "0.20",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "zipco": {
+            "name": "Zip.co",
+            "count": 100,
+            "cost": "0.50",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "zoho": {
+            "name": "Zoho",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        },
+        "zyrtec": {
+            "name": "Zyrtec",
+            "count": 100,
+            "cost": "0.10",
+            "ltrPrice": "0.20",
+            "repeatable": true
+        }
+    }
+}
