@@ -73,7 +73,7 @@ class DaisySmsService
 
             $originalCost = (float) $service['cost'];
             $dollar_rate = 1500;
-            $markupAmount = $originalCost * ($markupPercentage / 100) * $dollar_rate;
+            $markupAmount = $originalCost * (1 + ($markupPercentage / 100))* $dollar_rate;
             $finalCost = round($originalCost + $markupAmount, 2);
 
             $services[] = [
