@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\DaisyServiceModel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
+
 
 class DaisyServiceSeeder extends Seeder
 {
@@ -24,7 +27,7 @@ class DaisyServiceSeeder extends Seeder
 
         foreach ($data as $countryId => $services) {
             foreach ($services as $key => $details) {
-                Service::updateOrCreate(
+                DaisyServiceModel::updateOrCreate(
                     ['key_name' => $key],
                     [
                         'name' => $details['name'] ?? ucfirst($key),
