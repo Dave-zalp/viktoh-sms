@@ -157,7 +157,7 @@ class WebhookController extends Controller
             'sms_text' => $validated['text'],
             'otp_code' => $validated['code'],
             'status' => 'received',
-            'received_at' => $validated['receivedAt']
+            'code_received_at' => $validated['receivedAt']
         ]);
 
         // 6️⃣ Respond success
