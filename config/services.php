@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'daisysms' => [
+        'key' => env('DAISY_API_KEY'),
+    ],
+
 ];

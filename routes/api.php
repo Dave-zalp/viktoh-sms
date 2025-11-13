@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NumberController;
 use App\Http\Controllers\BalanceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\WebhookController;
+use App\Http\Controllers\DaisySmsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\VirtualAccountController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -115,18 +116,16 @@ Route::middleware('auth:sanctum')->prefix('auth')->group(function () {
     Route::get('/dashboard/stats', [DashboardController::class, 'stats']); // GET /api/v1/dashboard/stats
     Route::get('/dashboard/balance', [DashboardController::class, 'balance']);
 
+    Route::prefix('daisysms')->group(function () {
+        Route::get('/balance', [DaisySmsController::class, 'balance']);
+        Route::get('/services', [DaisySmsController::class, 'getServices']);
+        Route::post('/rent', [DaisySmsController::class, 'rentNumber']);
+        Route::post('/get-code', [DaisySmsController::class, 'getCode']);
+        Route::post('/mark-done', [DaisySmsController::class, 'markDone']);
+        Route::post('/cancel', [DaisySmsController::class, 'cancel']);
+    });
 
 
 
-});
 
-/*
-|--------------------------------------------------------------------------
-| API Routes (Add your other routes below)
-|--------------------------------------------------------------------------
-*/
-
-Route::middleware('auth:sanctum')->group(function () {
-    // Add your other authenticated routes here
-    // Example: SMS service routes, number purchase routes, etc.
 });
