@@ -165,7 +165,7 @@ class DaisySmsService
             return [
                 'success' => true,
                 'rental_id' => $parts[1] ?? null,
-                'phone' => $parts[2] ?? null,
+                'phone_number' => $parts[2] ?? null,
             ];
         }
 
