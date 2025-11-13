@@ -166,4 +166,53 @@ class WebhookController extends Controller
             'message' => 'Webhook received successfully'
         ], 200);
     }
+
+
+    public function handleDaisyWebhook(Request $request)
+        {
+            Log::info('DaisySMS Webhook Received', [
+                'payload' => $request->all()
+            ]);
+
+            // Validate webhook data
+            $validated = $request->validate([
+                'activationId' => 'required|numeric',
+                'messageId'    => 'required|numeric',
+                'service'      => 'required|string',
+                'text'         => 'nullable|string',
+                'code'         => 'nullable|string',
+                'country'      => 'required|numeric',
+                'receivedAt'   => 'required|date',
+            ]);
+
+            // Find the purchased number
+            $number = PurchasedNumber::where('activation_id', $validated['activationId'])->first();
+
+            if (!$number) {
+                Log::warning('DaisySMS Webhook: rental_id not found', [
+                    'activationId' => $validated['activationId'],
+                ]);
+
+                return response()->json(['success' => false, 'message' => 'Number not found'], 404);
+            }
+
+            // 5️⃣ Update record with SMS info
+            $number->update([
+                'sms_text' => $validated['text'],
+                'otp_code' => $validated['code'],
+                'status' => 'received',
+                'country_code' => $validated['country'],
+                'code_received_at' => $validated['receivedAt'],
+                'daisy_service_name' => $validated['service'],
+            ]);
+
+
+            Log::info('DaisySMS Webhook processed successfully', [
+                'purchased_number_id' => $number->id,
+                'actiation_id'        => $validated['activationId']
+            ]);
+
+            return response()->json(['success' => true], 200);
+        }
+
 }
