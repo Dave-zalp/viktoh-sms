@@ -164,7 +164,7 @@ class DaisySmsService
         if (str_starts_with($body, 'ACCESS_NUMBER')) {
             return [
                 'success' => true,
-                'activation_id' => $parts[1] ?? null,
+                'rental_id' => $parts[1] ?? null,
                 'phone' => $parts[2] ?? null,
             ];
         }
