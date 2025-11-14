@@ -245,13 +245,44 @@ class DaisySmsController extends Controller
     /**
      * Mark rental as done
      */
-    public function markDone(Request $request)
+    public function markDone($id)
     {
-        $request->validate(['activation_id' => 'required|integer']);
+        $user = auth()->user();
+        $purchasedNumber = PurchasedNumber::where('id', $id)
+            ->where('user_id', $user->id)
+            ->first();
 
-        $result = $this->daisy->markAsDone($request->activation_id);
+        if (!$purchasedNumber) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Number not found'
+            ], 404);
+        }
 
-        return response()->json($result);
+        if ($purchasedNumber->status !== 'received') {
+            return response()->json([
+                'success' => false,
+                'message' => 'Can only complete activations with received OTP'
+            ], 400);
+        }
+
+        $result = $this->daisy->markAsDone($purchasedNumber->activation_id);
+
+        if (!$result['success']) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Failed to get status',
+                    'error' => $result['error'] ?? 'Unknown error'
+                ], 400);
+            }
+
+        // Mark as completed locally
+        $purchasedNumber->markAsCompleted();
+
+        return response()->json([
+                    'success' => true,
+                    'message' => 'Activation Completed'
+                ], 200);
     }
 
     /**

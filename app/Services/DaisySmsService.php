@@ -161,6 +161,10 @@ class DaisySmsService
             return ['success' => true, 'balance' => $parts[1] ?? null];
         }
 
+        if (str_starts_with($body, 'ACCESS_ACTIVATION')) {
+            return ['success' => true, 'message' => 'ACCESS_ACTIVATION'];
+        }
+
         if (str_starts_with($body, 'ACCESS_NUMBER')) {
             return [
                 'success' => true,
