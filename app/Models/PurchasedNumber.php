@@ -31,7 +31,8 @@ class PurchasedNumber extends Model
         'code_received_at',
         'expires_at',
         'can_request_another_sms',
-        'provider'
+        'provider',
+        'daisy_service_name'
     ];
 
     /**
