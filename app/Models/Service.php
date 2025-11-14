@@ -21,6 +21,7 @@ class Service extends Model
         'icon',
         'is_active',
         'display_order',
+        'daisy_service_name'
     ];
 
     /**
