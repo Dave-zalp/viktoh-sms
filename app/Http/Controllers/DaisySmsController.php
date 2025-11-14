@@ -23,10 +23,10 @@ class DaisySmsController extends Controller
     /**
      * Get account balance
      */
-    public function balance()
-    {
-        return response()->json($this->daisy->getBalance());
-    }
+    // public function balance()
+    // {
+    //     return response()->json($this->daisy->getBalance());
+    // }
 
         /**
      * Get USA services with markup applied
