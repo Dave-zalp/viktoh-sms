@@ -288,12 +288,60 @@ class DaisySmsController extends Controller
     /**
      * Cancel rental
      */
-    public function cancel(Request $request)
+    public function cancel($id)
     {
-        $request->validate(['activation_id' => 'required|integer']);
+            $user = auth()->user();
+            $purchasedNumber = PurchasedNumber::where('id', $id)
+                ->where('user_id', $user->id)
+                ->first();
 
-        $result = $this->daisy->cancelRental($request->activation_id);
+            if (!$purchasedNumber) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Number not found'
+                ], 404);
+            }
 
-        return response()->json($result);
+            if ($purchasedNumber->status !== 'waiting') {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Can only cancel waiting activations'
+                ], 400);
+            }
+
+            DB::beginTransaction();
+
+             $result = $this->daisy->cancelRental($purchasedNumber->activation_id);
+
+            if (!$result['success']) {
+                    DB::rollBack();
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Failed to cancel activation',
+                        'error' => $result['error'] ?? 'Unknown error'
+                    ], 400);
+                }
+
+            // Mark as cancelled
+            $purchasedNumber->markAsCancelled();
+
+            // Refund user balance
+            $user->addBalance(
+                $purchasedNumber->cost,
+                "Refund for cancelled number {$purchasedNumber->phone_number}",
+                'refund',
+                $purchasedNumber
+            );
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Activation cancelled and balance refunded',
+                'data' => [
+                    'refunded_amount' => $purchasedNumber->cost,
+                    'current_balance' => $user->balance
+                ]
+            ], 200);
     }
 }

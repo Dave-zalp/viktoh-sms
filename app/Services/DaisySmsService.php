@@ -165,6 +165,10 @@ class DaisySmsService
             return ['success' => true, 'message' => 'ACCESS_ACTIVATION'];
         }
 
+        if (str_starts_with($body, 'ACCESS_CANCEL')) {
+            return ['success' => true, 'message' => 'ACCESS_CANCEL'];
+        }
+
         if (str_starts_with($body, 'ACCESS_NUMBER')) {
             return [
                 'success' => true,
