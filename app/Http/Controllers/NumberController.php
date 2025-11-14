@@ -124,8 +124,8 @@ class NumberController extends Controller
                 ], 400);
             }
 
-            // Calculate expiration time (default 10 minutes)
-            $expiresAt = now()->addSeconds((int) config('sms-activate.activation_timeout', 600));
+            // Calculate expiration time (default 20 minutes)
+            $expiresAt = now()->addSeconds((int) config('sms-activate.activation_timeout', 1200));
 
             // Create purchased number record
             $purchasedNumber = PurchasedNumber::create([

@@ -33,5 +33,5 @@ return [
 
     'default_operator' => env('SMS_ACTIVATE_DEFAULT_OPERATOR', 'any'),
 
-    'activation_timeout' => env('SMS_ACTIVATE_ACTIVATION_TIMEOUT', 600), // 10 minutes
+    'activation_timeout' => env('SMS_ACTIVATE_ACTIVATION_TIMEOUT', 1200), // 20 minutes
 ];
