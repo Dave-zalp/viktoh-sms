@@ -2,8 +2,9 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Http;
+use App\Models\DaisyServiceModel;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 
 class DaisySmsService
 {
@@ -71,7 +72,8 @@ class DaisySmsService
 
             $service = $value[$countryCode];
 
-            $originalCost = (float) $service['cost'];
+            // $originalCost = (float) $service['cost'];
+            $originalCost = (float) DaisyServiceModel::getCostByKeyName($serviceCode);
             $dollar_rate = (float) config('services.daisysms.exchange_rate', 1500);
             $markupPercentage = (float) config('services.daisysms.markup', 20);
             $markupAmount = $originalCost * (1 + ($markupPercentage / 100))* $dollar_rate;
