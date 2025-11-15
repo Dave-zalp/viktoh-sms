@@ -37,6 +37,8 @@ return [
 
     'daisysms' => [
         'key' => env('DAISY_API_KEY'),
+        'markup' => env('DAISY_MARKUP_PERCENT'),
+        'exchange_rate' => env('DAISY_EXCHANGE_RATE')
     ],
 
 ];

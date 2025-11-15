@@ -38,7 +38,7 @@ class DaisySmsService
      * @param int $countryCode         default = 187 (USA)
      * @return array
      */
-    public function getServicesWithMarkup(float $markupPercentage = 20.0, int $countryCode = 187): array
+    public function getServicesWithMarkup(int $countryCode = 187): array
     {
         $response = Http::timeout(30)->get($this->baseUrl, [
             'api_key' => $this->apiKey,
@@ -72,7 +72,8 @@ class DaisySmsService
             $service = $value[$countryCode];
 
             $originalCost = (float) $service['cost'];
-            $dollar_rate = 1500;
+            $dollar_rate = (float) config('services.daisysms.exchange_rate', 1500);
+            $markupPercentage = (float) config('services.daisysms.markup', 20);
             $markupAmount = $originalCost * (1 + ($markupPercentage / 100))* $dollar_rate;
             $finalCost = round($originalCost + $markupAmount, 2);
 
