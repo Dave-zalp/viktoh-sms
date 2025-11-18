@@ -32,8 +32,8 @@ class AdminController extends Controller
                 'data' => [
                     'total_users' => $totalUsers,
                     'total_failed_orders' => $totalFailedOrders,
-                    'total__passed_orders' => $totalPassedOrder,
-                    'total__transactions' => $totalTransactions,
+                    'total_passed_orders' => $totalPassedOrder,
+                    'total_transactions' => $totalTransactions,
                     'total_revenue' => number_format($totalRevenue, 2, '.', ''),
                 ],
             ], 200);
