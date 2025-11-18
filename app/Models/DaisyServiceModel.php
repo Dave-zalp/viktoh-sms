@@ -20,6 +20,6 @@ class DaisyServiceModel extends Model
     {
         $service = self::where('key_name', $keyName)->first();
 
-        return $service?->cost ? (float) $service->cost : null;
+        return $service?->cost ? (float) $service->cost : 0.8;
     }
 }
