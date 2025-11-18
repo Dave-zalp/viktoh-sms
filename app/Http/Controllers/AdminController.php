@@ -57,7 +57,7 @@ class AdminController extends Controller
         $recentUsers = User::where('role', '!=', 'admin')
             ->latest()
             ->take($limit)
-            ->get(['id', 'name', 'email', 'balance']);
+            ->get(['id', 'username', 'email', 'balance']);
 
         // Recent transactions with user email loaded
         $recentTransactions = Transaction::with('user:id,email')
