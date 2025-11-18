@@ -130,6 +130,7 @@ Route::middleware('auth:sanctum')->prefix('auth')->group(function () {
     Route::middleware('admin')->prefix('admin')->group(function(){
 
       Route::get('/dashboard/stats', [AdminController::class, 'stats']);
+      Route::get('/dashboard/recent-stats', [AdminController::class, 'recentStats']);
 
     });
 

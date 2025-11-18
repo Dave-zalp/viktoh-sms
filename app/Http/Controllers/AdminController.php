@@ -47,4 +47,51 @@ class AdminController extends Controller
             ], 500);
         }
     }
+
+   public function recentStats(): JsonResponse
+{
+    try {
+        $limit = request()->get('limit', 10);
+
+        // Recent non-admin users
+        $recentUsers = User::where('role', '!=', 'admin')
+            ->latest()
+            ->take($limit)
+            ->get(['id', 'name', 'email', 'balance']);
+
+        // Recent transactions with user email loaded
+        $recentTransactions = Transaction::with('user:id,email')
+            ->latest()
+            ->take($limit)
+            ->get(['id', 'user_id', 'type', 'amount', 'reference'])
+            ->map(function ($txn) {
+                return [
+                    'id' => $txn->id,
+                    'email' => $txn->user?->email ?? null,
+                    'type' => $txn->type,
+                    'amount' => $txn->amount,
+                    'reference' => $txn->reference,
+                ];
+            });
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Recent users and transactions loaded.',
+            'data' => [
+                'recent_users' => $recentUsers,
+                'recent_transactions' => $recentTransactions,
+            ]
+        ], 200);
+
+    } catch (\Exception $e) {
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Failed to load recent stats.',
+            'error' => $e->getMessage(),
+        ], 500);
+    }
+}
+
+
 }
