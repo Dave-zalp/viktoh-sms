@@ -158,4 +158,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->balance >= $amount;
     }
+
+     public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
 }

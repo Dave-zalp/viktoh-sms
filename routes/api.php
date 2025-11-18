@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NumberController;
@@ -124,6 +125,12 @@ Route::middleware('auth:sanctum')->prefix('auth')->group(function () {
         Route::get('/{id}/get-code', [DaisySmsController::class, 'getCode']);
         Route::post('/{id}/mark-done', [DaisySmsController::class, 'markDone']);
         Route::post('/{id}/cancel', [DaisySmsController::class, 'cancel']);
+    });
+
+    Route::middleware('admin')->prefix('admin')->group(function(){
+
+      Route::get('/dashboard/stats', [AdminController::class, 'stats']);
+
     });
 
 
