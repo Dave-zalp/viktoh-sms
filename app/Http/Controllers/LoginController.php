@@ -59,18 +59,25 @@ class LoginController extends Controller
             // Update last login (if you have this field).
             // $user->update(['last_login_at' => now()]);
 
+            $userData = [
+                'id' => $user->id,
+                'username' => $user->username,
+                'email' => $user->email,
+                'is_email_verified' => $user->is_email_verified,
+                'balance' => $user->formatted_balance,
+                'created_at' => $user->created_at->toDateTimeString(),
+            ];
+
+            // Add role ONLY if user is admin
+            if ($user->role === 'admin') {
+                $userData['role'] = 'admin';
+            }
+
             return response()->json([
                 'success' => true,
                 'message' => 'Login successful!',
                 'data' => [
-                    'user' => [
-                        'id' => $user->id,
-                        'username' => $user->username,
-                        'email' => $user->email,
-                        'is_email_verified' => $user->is_email_verified,
-                        'balance' => $user->formatted_balance,
-                        'created_at' => $user->created_at->toDateTimeString(),
-                    ],
+                    'user' => $userData,
                     'token' => $token,
                     'token_type' => 'Bearer',
                 ],
