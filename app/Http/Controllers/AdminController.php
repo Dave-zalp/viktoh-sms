@@ -93,25 +93,35 @@ class AdminController extends Controller
     }
 }
 
-    /**
-     * Get all users paginated for admin dashboard.
-     */
+/**
+ * Get all users paginated for admin dashboard (with optional search).
+ */
     public function getUsers(Request $request): JsonResponse
     {
-        // Columns you want to return ALWAYS
+        // Columns to always return
         $columns = ['username', 'email', 'phone_number', 'balance'];
 
-        $users = User::query()
-            ->select($columns)
-            ->latest()
-            ->paginate(20); // default pagination
+        $query = User::query()->select($columns);
+
+        // Optional search
+        if ($search = $request->input('search')) {
+            $query->where(function ($q) use ($search) {
+                $q->where('email', 'LIKE', "%{$search}%")
+                ->orWhere('username', 'LIKE', "%{$search}%")
+                ->orWhere('phone_number', 'LIKE', "%{$search}%");
+            });
+        }
+
+        // Paginate results
+        $users = $query->latest()->paginate(20);
 
         return response()->json([
-            'status' => true,
+            'status'  => true,
             'message' => 'Users fetched successfully',
-            'data' => $users
+            'data'    => $users,
         ]);
     }
+
 
 
 }
