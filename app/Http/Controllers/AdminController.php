@@ -99,7 +99,7 @@ class AdminController extends Controller
     public function getUsers(Request $request): JsonResponse
     {
         // Columns to always return
-        $columns = ['username', 'email', 'phone_number', 'balance'];
+        $columns = ['id', 'username', 'email', 'phone_number', 'balance'];
 
         $query = User::query()->select($columns);
 
