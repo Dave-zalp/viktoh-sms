@@ -122,6 +122,53 @@ class AdminController extends Controller
         ]);
     }
 
+    public function updateBalance(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'user_id'   => 'required|exists:users,id',
+            'amount'    => 'required|numeric|min:0.01',
+            'type'      => 'required|in:credit,debit',
+        ]);
+
+        $user = User::find($validated['user_id']);
+
+        // Convert amount to float, ensure consistency if using decimals
+        $amount = (float) $validated['amount'];
+
+        if ($validated['type'] === 'debit') {
+
+            // Prevent negative balance
+            if ($user->balance < $amount) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Insufficient funds. Debit failed.',
+                ], 400);
+            }
+
+            // Perform debit
+            $user->balance -= $amount;
+            $action = 'debit';
+        } else {
+
+            // Perform credit
+            $user->balance += $amount;
+            $action = 'credit';
+        }
+
+        $user->save();
+
+
+        return response()->json([
+            'status' => true,
+            'message' => "User {$action} successful.",
+            'data' => [
+                'user_id' => $user->id,
+                'new_balance' => $user->balance,
+            ]
+        ]);
+    }
+
+
 
 
 }
