@@ -164,8 +164,8 @@ class AdminController extends Controller
             'user_id'        => $user->id,
             'type'           => $action,
             'amount'         => $amount,
-            'before_balance' => $balanceBefore,
-            'after_balance'  => $newBalance,
+            'balance_before' => $balanceBefore,
+            'balance_after'  => $newBalance,
             'description'    => 'Admin Action',
             'reference'      => \Str::uuid()->toString(),
         ]);
