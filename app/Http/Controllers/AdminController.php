@@ -131,8 +131,7 @@ class AdminController extends Controller
         ]);
 
         $user = User::find($validated['user_id']);
-
-        // Convert amount to float, ensure consistency if using decimals
+        $balanceBefore = $user->balance;
         $amount = (float) $validated['amount'];
 
         if ($validated['type'] === 'debit') {
@@ -148,8 +147,8 @@ class AdminController extends Controller
             // Perform debit
             $user->balance -= $amount;
             $action = 'debit';
-        } else {
 
+        } else {
             // Perform credit
             $user->balance += $amount;
             $action = 'credit';
@@ -157,16 +156,30 @@ class AdminController extends Controller
 
         $user->save();
 
+        // New balance is simply the saved balance
+        $newBalance = $user->balance;
+
+        // Log transaction
+        Transaction::create([
+            'user_id'        => $user->id,
+            'type'           => $action,
+            'amount'         => $amount,
+            'before_balance' => $balanceBefore,
+            'after_balance'  => $newBalance,
+            'description'    => 'Admin Action',
+            'reference'      => \Str::uuid()->toString(),
+        ]);
 
         return response()->json([
             'status' => true,
             'message' => "User {$action} successful.",
             'data' => [
                 'user_id' => $user->id,
-                'new_balance' => $user->balance,
+                'new_balance' => $newBalance,
             ]
         ]);
     }
+
 
 
 
