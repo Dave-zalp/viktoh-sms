@@ -180,6 +180,36 @@ class AdminController extends Controller
         ]);
     }
 
+    /**
+ * Get all transactions paginated for admin dashboard (with optional search).
+ */
+    public function gettrxs(Request $request): JsonResponse
+    {
+        // Base query: get transactions + user email
+        $query = Transaction::with(['user:id,email'])
+            ->select(['id', 'user_id', 'amount', 'type', 'description', 'created_at']);
+
+        // Optional search by user email or description or type
+        if ($search = $request->input('search')) {
+            $query->where(function ($q) use ($search) {
+                $q->where('description', 'LIKE', "%{$search}%")
+                ->orWhere('type', 'LIKE', "%{$search}%")
+                ->orWhereHas('user', function ($u) use ($search) {
+                        $u->where('email', 'LIKE', "%{$search}%");
+                });
+            });
+        }
+
+        // Paginate results
+        $transactions = $query->latest()->paginate(15);
+
+        return response()->json([
+            'status'  => true,
+            'message' => 'Transactions fetched successfully',
+            'data'    => $transactions,
+        ]);
+    }
+
 
 
 
