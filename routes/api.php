@@ -134,7 +134,7 @@ Route::middleware('auth:sanctum')->prefix('auth')->group(function () {
       Route::get('/getUsers', [AdminController::class, 'getUsers']);
       Route::post('/update-balance', [AdminController::class, 'updateBalance']);
 
-      #transaction
+      # transaction
       Route::get('/getTransactions', [AdminController::class, 'gettrxs']);
 
     });
