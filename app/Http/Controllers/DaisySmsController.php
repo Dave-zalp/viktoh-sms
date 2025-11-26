@@ -209,6 +209,14 @@ class DaisySmsController extends Controller
             if ($purchasedNumber->isExpired()) {
                 $purchasedNumber->markAsExpired();
 
+                // Refund user balance
+                $user->addBalance(
+                    $purchasedNumber->cost,
+                    "Refund for expired number {$purchasedNumber->phone_number}",
+                    'refund',
+                    $purchasedNumber
+                );
+
                 return response()->json([
                     'success' => false,
                     'message' => 'Activation expired',
