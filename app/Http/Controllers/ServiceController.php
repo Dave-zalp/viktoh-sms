@@ -100,42 +100,105 @@ class ServiceController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
+    // public function getPrices(Request $request): JsonResponse
+    // {
+    //     try {
+    //         $service = $request->input('service');
+    //         $country = $request->input('country');
+
+    //         $result = $this->smsActivate->getPrices($service, $country);
+
+    //         if ($result['success']) {
+    //             return response()->json([
+    //                 'success' => true,
+    //                 'data' => $result['prices']
+    //             ], 200);
+    //         }
+
+    //         // Log failed API response
+    //         Log::error('Failed to fetch prices from SMSActivate API', [
+    //             'service' => $service,
+    //             'country' => $country,
+    //             'response' => $result
+    //         ]);
+
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Failed to fetch prices',
+    //             'error' => $result['error'] ?? 'Unknown error'
+    //         ], 400);
+
+    //     } catch (\Exception $e) {
+
+    //         // Log unexpected exceptions
+    //         Log::error('Exception occurred while fetching prices', [
+    //             'service' => $request->input('service'),
+    //             'country' => $request->input('country'),
+    //             'error' => $e->getMessage(),
+    //             'trace' => $e->getTraceAsString()
+    //         ]);
+
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Failed to fetch prices',
+    //             'error' => $e->getMessage()
+    //         ], 500);
+    //     }
+    // }
+
     public function getPrices(Request $request): JsonResponse
     {
         try {
-            $service = $request->input('service');
-            $country = $request->input('country');
+            $service = $request->input('service');   // e.g. "xk"
+            $country = $request->input('country');   // e.g. "2"
 
-            $result = $this->smsActivate->getPrices($service, $country);
+            // 1. Fetch real-time prices using getTopCountriesByService
+            $result = $this->smsActivate->getTopCountriesByService($service);
 
-            if ($result['success']) {
+            if (!$result['success']) {
                 return response()->json([
-                    'success' => true,
-                    'data' => $result['prices']
-                ], 200);
+                    'success' => false,
+                    'message' => 'Failed to fetch prices',
+                    'error' => $result['error'] ?? 'Unknown error'
+                ], 400);
             }
 
-            // Log failed API response
-            Log::error('Failed to fetch prices from SMSActivate API', [
-                'service' => $service,
-                'country' => $country,
-                'response' => $result
-            ]);
+            $countries = $result['countries'];
+
+            // 2. Ensure the country ID exists in API response
+            if (!array_key_exists($country, $countries)) {
+                return response()->json([
+                    'success' => false,
+                    'message' => "No price data found for country {$country}"
+                ], 404);
+            }
+
+            $countryData = $countries[$country];
+
+            // 3. Build required response format
+            $responseData = [
+                $country => [
+                    $service => [
+                        "cost"           => $countryData["price"],                    // your marked-up price
+                        "count"          => $countryData["count"] ?? 0,               // available numbers
+                        "physicalCount"  => $countryData["retail_price"] ?? 0,        // mapped as you required
+                        "original_cost"  => $countryData["original_price"]
+                                            ?? $countryData["price"]                  // original API price
+                    ]
+                ]
+            ];
 
             return response()->json([
-                'success' => false,
-                'message' => 'Failed to fetch prices',
-                'error' => $result['error'] ?? 'Unknown error'
-            ], 400);
+                'success' => true,
+                'data' => $responseData
+            ], 200);
 
         } catch (\Exception $e) {
 
-            // Log unexpected exceptions
             Log::error('Exception occurred while fetching prices', [
                 'service' => $request->input('service'),
                 'country' => $request->input('country'),
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
+                'error' => $e->getMessage()
             ]);
 
             return response()->json([
@@ -145,6 +208,9 @@ class ServiceController extends Controller
             ], 500);
         }
     }
+
+
+
 
     /**
      * Get top countries for a service
