@@ -179,7 +179,8 @@ class ServiceController extends Controller
             $responseData = [
                 $country => [
                     $service => [
-                        "cost"           => $countryData["price"],                    // your marked-up price
+                        // "cost"           => $countryData["price"],
+                        "cost"           => $countryData["retail_price"],             // your marked-up price
                         "count"          => $countryData["count"] ?? 0,               // available numbers
                         "physicalCount"  => $countryData["retail_price"] ?? 0,        // mapped as you required
                         "original_cost"  => $countryData["original_price"]
