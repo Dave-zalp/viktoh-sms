@@ -183,6 +183,7 @@ class DaisySmsController extends Controller
 
          $purchasedNumber = PurchasedNumber::where('id', $id)
                 ->where('user_id', $user->id)
+                 ->lockForUpdate()  // ✅ Critical fix
                 ->first();
 
         if (!$purchasedNumber) {
@@ -205,17 +206,31 @@ class DaisySmsController extends Controller
                 ], 200);
             }
 
+            // ✅ Check if already expired/cancelled/completed (prevent duplicate refunds)
+            if (in_array($purchasedNumber->status, ['expired', 'cancelled', 'completed'])) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Activation is no longer active',
+                    'status' => $purchasedNumber->status
+                ], 400);
+            }
+
             // Check if expired
             if ($purchasedNumber->isExpired()) {
-                $purchasedNumber->markAsExpired();
+                // Use updateOrFail with where clause for double safety
+                $updated = PurchasedNumber::where('id', $purchasedNumber->id)
+                    ->where('status', 'waiting')  // ✅ Only update if still waiting
+                    ->update(['status' => 'expired']);
 
-                // Refund user balance
-                // $user->addBalance(
-                //     $purchasedNumber->cost,
-                //     "Refund for expired number {$purchasedNumber->phone_number}",
-                //     'refund',
-                //     $purchasedNumber
-                // );
+                // ✅ Only refund if we actually updated the status
+                if ($updated) {
+                    $user->addBalance(
+                        $purchasedNumber->cost,
+                        "Refund for expired number {$purchasedNumber->phone_number}",
+                        'refund',
+                        $purchasedNumber
+                    );
+                }
 
                 return response()->json([
                     'success' => false,
