@@ -325,6 +325,13 @@ class DaisySmsController extends Controller
                 ], 404);
             }
 
+            if ($purchasedNumber->status !== 'expired') {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Number is expired, Order has been refunded'
+                ], 400);
+            }
+
             if ($purchasedNumber->status !== 'waiting') {
                 return response()->json([
                     'success' => false,
