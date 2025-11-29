@@ -373,7 +373,7 @@ class SmsActivateService
                 $exchangeRate = config('sms-activate.exchange_rate', 1500);
                 foreach ($data as &$country) {
                     if (isset($country['price'])) {
-                        $country['original_price'] = $country['price'];
+                        $country['original_price'] = $country['retail_price'];
                         $country['price'] = $country['price'] * (1 + ($markup / 100)) * $exchangeRate;
                     }
                     if (isset($country['retail_price'])) {
