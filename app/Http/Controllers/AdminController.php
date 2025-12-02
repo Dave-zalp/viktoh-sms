@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ServicesettingsModel;
 use App\Models\User;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
@@ -207,6 +208,51 @@ class AdminController extends Controller
             'status'  => true,
             'message' => 'Transactions fetched successfully',
             'data'    => $transactions,
+        ]);
+    }
+
+    /**
+     * GET — Return the current rate & top-up settings
+     */
+    public function getRate_Topup()
+    {
+        $settings = ServicesettingsModel::first();
+
+        // If table is empty, create default values automatically
+        if (!$settings) {
+            $settings = ServicesettingsModel::create();
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $settings
+        ]);
+    }
+
+        /**
+     * PUT — Update settings (admin only)
+     */
+    public function updateRate_Topup(Request $request)
+    {
+        $validated = $request->validate([
+            'sms_activate_exc_rate' => 'nullable|numeric',
+            'sms_activate_top_up'   => 'nullable|numeric',
+            'daisy_sms_exc_rate'    => 'nullable|numeric',
+            'daisy_sms_top_up'      => 'nullable|numeric',
+        ]);
+
+        $settings = ServicesettingsModel::first();
+
+        if (!$settings) {
+            $settings = ServicesettingsModel::create();
+        }
+
+        $settings->update($validated);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Settings updated successfully',
+            'data' => $settings
         ]);
     }
 
