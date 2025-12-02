@@ -74,8 +74,8 @@ class DaisySmsService
 
             // $originalCost = (float) $service['cost'];
             $originalCost = (float) DaisyServiceModel::getCostByKeyName($serviceCode);
-            $dollar_rate = (float) config('services.daisysms.exchange_rate', 1500);
-            $markupPercentage = (float) config('services.daisysms.markup', 20);
+            $dollar_rate = (float)service_settings()->daisy_sms_exc_rate;;
+            $markupPercentage = (float)service_settings()->daisy_sms_top_up;;
             $markupAmount = $originalCost * (1 + ($markupPercentage / 100))* $dollar_rate;
             $finalCost = round($originalCost + $markupAmount, 2);
 

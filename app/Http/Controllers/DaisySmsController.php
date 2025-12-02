@@ -90,8 +90,8 @@ class DaisySmsController extends Controller
 
             // Calculate cost
             $cost = DaisyServiceModel::getCostByKeyName($serviceCode);
-            $exchangeRate = (float) config('services.daisysms.exchange_rate', 1500);
-            $markupPercentage = (float) config('services.daisysms.markup', 50);
+            $exchangeRate = (float)service_settings()->daisy_sms_exc_rate;
+            $markupPercentage = (float)service_settings()->daisy_sms_top_up;
 
             $finalAmount = round($cost * $exchangeRate * (1 + ($markupPercentage / 100)), 2);
 
