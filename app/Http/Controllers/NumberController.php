@@ -102,8 +102,10 @@ class NumberController extends Controller
 
             // Check if user has sufficient balance
             $cost = (float)$result['cost'];
-            $exchangeRate = (float)config('sms-activate.exchange_rate', 1500);
-            $markupPercentage = (float)config('sms-activate.markup_percentage', 20);
+            $exchangeRate = (float)service_settings()->sms_activate_exc_rate;
+            // $exchangeRate = (float)config('sms-activate.exchange_rate', 1500);
+            // $markupPercentage = (float)config('sms-activate.markup_percentage', 20);
+            $markupPercentage = (float)service_settings()->sms_activate_top_up;
 
             $finalAmount = round($cost * $exchangeRate * (1 + ($markupPercentage / 100)), 2);
 

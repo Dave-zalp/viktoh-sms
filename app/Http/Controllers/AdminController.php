@@ -249,6 +249,8 @@ class AdminController extends Controller
 
         $settings->update($validated);
 
+        cache()->forget('service_settings');
+
         return response()->json([
             'success' => true,
             'message' => 'Settings updated successfully',

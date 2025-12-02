@@ -369,8 +369,10 @@ class SmsActivateService
 
             if ($data && !isset($data['error'])) {
                 // Apply markup
-                $markup = config('sms-activate.markup_percentage', 20);
-                $exchangeRate = config('sms-activate.exchange_rate', 1500);
+                // $markup = config('sms-activate.markup_percentage', 20);
+                $markup = (float)service_settings()->sms_activate_top_up;
+                // $exchangeRate = config('sms-activate.exchange_rate', 1500);
+                $exchangeRate = (float)service_settings()->sms_activate_exc_rate;
                 foreach ($data as &$country) {
                     if (isset($country['price'])) {
                         $country['original_price'] = $country['retail_price'];
@@ -636,8 +638,9 @@ class SmsActivateService
      */
     protected function applyMarkupToPrices(array $data,)
     {
-        $exchangeRate = config('sms-activate.exchange_rate', 1500);
-        $markupPercentage = config('sms-activate.markup_percentage', 20);
+        // $exchangeRate = config('sms-activate.exchange_rate', 1500);
+        $exchangeRate = (float)service_settings()->sms_activate_exc_rate;
+        $markupPercentage = (float)service_settings()->sms_activate_top_up;
 
         foreach ($data as $country => &$services) {
             foreach ($services as $service => &$priceData) {
