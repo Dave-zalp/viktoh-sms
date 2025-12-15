@@ -138,7 +138,7 @@ Route::middleware('auth:sanctum')->prefix('auth')->group(function () {
       Route::get('/getTransactions', [AdminController::class, 'gettrxs']);
 
       # orders
-      Route::get('/getOrder', [AdminController::class, 'getOrder']);
+      Route::get('/getOrder', [AdminController::class, 'getOrders']);
 
       #settings
       Route::get('/settings/rate-topup', [AdminController::class, 'getRate_Topup']);
