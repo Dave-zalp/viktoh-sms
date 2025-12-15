@@ -54,6 +54,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'frontend_url' => env('FRONT_URL', 'https://smslegit.com'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

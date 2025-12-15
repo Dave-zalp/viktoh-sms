@@ -258,6 +258,48 @@ class AdminController extends Controller
         ]);
     }
 
+    public function getOrders(Request $request): JsonResponse
+    {
+        $query = PurchasedNumber::with([
+                'user:id,email'
+            ])
+            ->select([
+                'id',
+                'user_id',
+                'phone_number',
+                'service_code',
+                'country_code',
+                'cost',
+                'otp_code',
+                'status',
+                'provider',
+                'created_at'
+            ]);
+
+        // Optional search
+        if ($search = $request->input('search')) {
+            $query->where(function ($q) use ($search) {
+                $q->where('phone_number', 'LIKE', "%{$search}%")
+                ->orWhere('service_code', 'LIKE', "%{$search}%")
+                ->orWhere('country_code', 'LIKE', "%{$search}%")
+                ->orWhere('status', 'LIKE', "%{$search}%")
+                ->orWhere('provider', 'LIKE', "%{$search}%")
+                ->orWhereHas('user', function ($u) use ($search) {
+                    $u->where('email', 'LIKE', "%{$search}%");
+                });
+            });
+        }
+
+        // Pagination
+        $orders = $query->latest()->paginate(15);
+
+        return response()->json([
+            'status'  => true,
+            'message' => 'Orders fetched successfully',
+            'data'    => $orders,
+        ]);
+    }
+
 
 
 

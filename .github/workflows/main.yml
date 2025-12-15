@@ -86,8 +86,8 @@ jobs:
             # Import service names to database
             # php artisan sms:import-services
 
-            echo "Composer autoload dump"
-            composer dump-autoload
+            # echo "Composer autoload dump"
+            # composer dump-autoload
 
             # echo "Seeding database"
             # php artisan db:seed
