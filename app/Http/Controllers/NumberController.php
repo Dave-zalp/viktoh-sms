@@ -37,11 +37,6 @@ class NumberController extends Controller
             'max_price' => 'nullable|numeric|min:0',
         ]);
 
-        return response()->json([
-                'success' => false,
-                'message' => 'All country number are under upgrade or maintainace, buy from USA Numbers !',
-            ], 400);
-
         if ($validator->fails()) {
             Log::warning('Purchase validation failed', [
                 'user_id' => auth()->id(),
