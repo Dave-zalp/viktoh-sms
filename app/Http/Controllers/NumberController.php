@@ -40,7 +40,6 @@ class NumberController extends Controller
         return response()->json([
                 'success' => false,
                 'message' => 'All country number are under upgrade or maintainace, buy from USA Numbers !',
-                'errors' => 'Unkown errors'
             ], 400);
 
         if ($validator->fails()) {
