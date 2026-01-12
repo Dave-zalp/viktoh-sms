@@ -94,12 +94,22 @@ class SmsActivateService
             $response = $this->makeRequest($params);
             $data = json_decode($response, true);
 
-            // Check if response has the expected structure
             if (!$data) {
-                return $this->handleError('Invalid JSON response');
+                return [
+                    'success' => false,
+                    'error' => 'Invalid JSON response: ' . json_last_error_msg()
+                ];
             }
 
-            // Handle the direct SMS-Activate API response format
+            // Handle error responses
+            if (isset($data['error']) || isset($data['message'])) {
+                return [
+                    'success' => false,
+                    'error' => $data['error'] ?? $data['message'] ?? 'Unknown error'
+                ];
+            }
+
+            // Handle the response format: {status: "success", services: [{code, name}]}
             if (isset($data['status']) && $data['status'] === 'success' && isset($data['services'])) {
                 return [
                     'success' => true,
@@ -110,46 +120,17 @@ class SmsActivateService
                 ];
             }
 
-            // Handle wrapped response format (if already processed)
-            if (isset($data['success']) && isset($data['data']['services'])) {
-                return $data;
-            }
-
-            // Handle old format where services are key-value pairs (code => quantity)
-            if (is_array($data) && !isset($data['status']) && !isset($data['success'])) {
-                $serviceNames = $this->getServiceNamesMapping();
-                $services = [];
-
-                foreach ($data as $code => $quantity) {
-                    $quantity = intval($quantity);
-
-                    if ($quantity > 0) {
-                        $services[] = [
-                            'code' => $code,
-                            'name' => $serviceNames[$code] ?? ucfirst($code),
-                            'available_count' => $quantity
-                        ];
-                    }
-                }
-
-                usort($services, function($a, $b) {
-                    return $b['available_count'] - $a['available_count'];
-                });
-
-                return [
-                    'success' => true,
-                    'data' => [
-                        'services' => $services,
-                        'total_services' => count($services)
-                    ]
-                ];
-            }
-
-            return $this->handleError('Unexpected response format');
+            return [
+                'success' => false,
+                'error' => 'Unexpected response format'
+            ];
 
         } catch (\Exception $e) {
             Log::error('SMS-Activate getServicesForCountry error: ' . $e->getMessage());
-            return ['success' => false, 'error' => $e->getMessage()];
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
         }
     }
 
