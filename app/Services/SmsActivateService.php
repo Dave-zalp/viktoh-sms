@@ -94,16 +94,35 @@ class SmsActivateService
             $response = $this->makeRequest($params);
             $data = json_decode($response, true);
 
-            if ($data && is_array($data)) {
-                // Load service names mapping
-                $serviceNames = $this->getServiceNamesMapping();
+            // Check if response has the expected structure
+            if (!$data) {
+                return $this->handleError('Invalid JSON response');
+            }
 
-                // Transform data to include service names
+            // Handle the direct SMS-Activate API response format
+            if (isset($data['status']) && $data['status'] === 'success' && isset($data['services'])) {
+                return [
+                    'success' => true,
+                    'data' => [
+                        'services' => $data['services'],
+                        'total_services' => count($data['services'])
+                    ]
+                ];
+            }
+
+            // Handle wrapped response format (if already processed)
+            if (isset($data['success']) && isset($data['data']['services'])) {
+                return $data;
+            }
+
+            // Handle old format where services are key-value pairs (code => quantity)
+            if (is_array($data) && !isset($data['status']) && !isset($data['success'])) {
+                $serviceNames = $this->getServiceNamesMapping();
                 $services = [];
+
                 foreach ($data as $code => $quantity) {
                     $quantity = intval($quantity);
 
-                    // Only include services with available numbers
                     if ($quantity > 0) {
                         $services[] = [
                             'code' => $code,
@@ -113,19 +132,21 @@ class SmsActivateService
                     }
                 }
 
-                // Sort by available count (descending)
                 usort($services, function($a, $b) {
                     return $b['available_count'] - $a['available_count'];
                 });
 
                 return [
                     'success' => true,
-                    'services' => $services,
-                    'total_services' => count($services)
+                    'data' => [
+                        'services' => $services,
+                        'total_services' => count($services)
+                    ]
                 ];
             }
 
-            return $this->handleError($response);
+            return $this->handleError('Unexpected response format');
+
         } catch (\Exception $e) {
             Log::error('SMS-Activate getServicesForCountry error: ' . $e->getMessage());
             return ['success' => false, 'error' => $e->getMessage()];
