@@ -83,7 +83,7 @@ class SmsActivateService
     {
         try {
             $params = [
-                'action' => 'getNumbersStatus',
+                'action' => 'getServicesList',
                 'country' => $countryId
             ];
 
