@@ -92,41 +92,32 @@ class SmsActivateService
             }
 
             $response = $this->makeRequest($params);
+
+            // Debug: Log raw response
+            \Log::info('Raw Response:', ['response' => $response]);
+
             $data = json_decode($response, true);
+
+            // Debug: Log decoded data
+            \Log::info('Decoded Data:', ['data' => $data]);
 
             if (!$data) {
                 return [
                     'success' => false,
-                    'error' => 'Invalid JSON response: ' . json_last_error_msg()
+                    'error' => 'Invalid JSON response: ' . json_last_error_msg(),
+                    'raw' => substr($response, 0, 200)
                 ];
             }
 
-            // Handle error responses
-            if (isset($data['error']) || isset($data['message'])) {
-                return [
-                    'success' => false,
-                    'error' => $data['error'] ?? $data['message'] ?? 'Unknown error'
-                ];
-            }
-
-            // Handle the response format: {status: "success", services: [{code, name}]}
-            if (isset($data['status']) && $data['status'] === 'success' && isset($data['services'])) {
-                return [
-                    'success' => true,
-                    'data' => [
-                        'services' => $data['services'],
-                        'total_services' => count($data['services'])
-                    ]
-                ];
-            }
-
+            // Debug: Return the raw decoded data to see what we're getting
             return [
-                'success' => false,
-                'error' => 'Unexpected response format'
+                'success' => true,
+                'debug' => true,
+                'data' => $data
             ];
 
         } catch (\Exception $e) {
-            Log::error('SMS-Activate getServicesForCountry error: ' . $e->getMessage());
+            \Log::error('SMS-Activate getServicesForCountry error: ' . $e->getMessage());
             return [
                 'success' => false,
                 'error' => $e->getMessage()
