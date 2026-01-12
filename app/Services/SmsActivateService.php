@@ -94,29 +94,24 @@ class SmsActivateService
             $response = $this->makeRequest($params);
             $data = json_decode($response, true);
 
-            if ($data && is_array($data)) {
-                // Load service names mapping
+            if (isset($data['services']) && is_array($data['services'])) {
+
                 $serviceNames = $this->getServiceNamesMapping();
-
-                // Transform data to include service names
                 $services = [];
-                foreach ($data as $code => $quantity) {
-                    $quantity = intval($quantity);
 
-                    // Only include services with available numbers
+                foreach ($data['services'] as $code => $quantity) {
+                    $quantity = (int) $quantity;
+
                     if ($quantity > 0) {
                         $services[] = [
                             'code' => $code,
-                            'name' => $serviceNames[$code] ?? ucfirst($code),
+                            'name' => $serviceNames[$code] ?? strtoupper($code),
                             'available_count' => $quantity
                         ];
                     }
                 }
 
-                // Sort by available count (descending)
-                usort($services, function($a, $b) {
-                    return $b['available_count'] - $a['available_count'];
-                });
+                usort($services, fn($a, $b) => $b['available_count'] <=> $a['available_count']);
 
                 return [
                     'success' => true,
