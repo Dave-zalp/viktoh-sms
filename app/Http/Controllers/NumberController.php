@@ -278,24 +278,11 @@ class NumberController extends Controller
             }
 
 
-            $data = $result['data'];
-
-            $otpCode = null;
+            $otpCode = $result['code'] ?? null;
             $smsText = null;
 
-            // Check for SMS
-            if (isset($data['sms']['code']) && !empty($data['sms']['code'])) {
-                $otpCode = $data['sms']['code'];
-                $smsText = $data['sms']['text'] ?? null;
-            }
+            if ($result['status'] === 'received' && $otpCode) {
 
-            // Check for Call (voice verification)
-            elseif (isset($data['call']['code']) && !empty($data['call']['code'])) {
-                $otpCode = $data['call']['code'];
-                $smsText = $data['call']['text'] ?? null;
-            }
-
-            if ($otpCode) {
                 $purchasedNumber->markAsReceived($otpCode, $smsText);
 
                 return response()->json([
@@ -303,7 +290,7 @@ class NumberController extends Controller
                     'data' => [
                         'status' => 'received',
                         'otp_code' => $otpCode,
-                        'sms_text' => $smsText,
+                        'sms_text' => null,
                         'received_at' => $purchasedNumber->code_received_at->toDateTimeString(),
                     ]
                 ], 200);
