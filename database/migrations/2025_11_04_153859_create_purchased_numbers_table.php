@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('country_code');
             $table->string('operator')->nullable();
             $table->decimal('cost', 10, 2);
-            $table->integer('currency')->default(840); // ISO 4217
+            $table->integer('currency')->default(value: 840); // ISO 4217
             $table->enum('status', ['waiting', 'received', 'cancelled', 'completed', 'expired'])->default('waiting');
             $table->string('otp_code')->nullable();
             $table->text('sms_text')->nullable();

@@ -174,7 +174,6 @@ class WebhookController extends Controller
     {
         Log::info('DaisySMS Webhook Received', ['payload' => $request->all()]);
 
-        // Manual validator (Laravel's validate() throws 422)
         $validator = Validator::make($request->all(), [
             'activationId' => 'required|numeric',
             'messageId'    => 'required|numeric',
@@ -190,41 +189,52 @@ class WebhookController extends Controller
                 'errors' => $validator->errors()->toArray(),
             ]);
 
-            return response()->json(['success' => true], 200); // avoid Daisy retry
+            return response()->json(['success' => true], 200);
         }
 
         $validated = $validator->validated();
 
-        // Find rented number
-        $number = PurchasedNumber::where('activation_id', $validated['activationId'])->first();
+        // Fetch latest record for this activation
+        $number = PurchasedNumber::where('activation_id', $validated['activationId'])
+            ->latest()
+            ->first();
 
         if (!$number) {
             Log::warning('DaisySMS Webhook: activation_id not found', [
                 'activationId' => $validated['activationId'],
             ]);
 
-            return response()->json(['success' => true], 200); // ACK to avoid retries
+            return response()->json(['success' => true], 200);
         }
 
-        // Prevent double processing
+        /**
+         * If we already stored one OTP for this activation,
+         * create a NEW record for the new SMS
+         */
         if ($number->status === 'received') {
-            Log::info('DaisySMS Webhook: duplicate SMS ignored', [
+            Log::info('DaisySMS Webhook: additional SMS received', [
                 'activationId' => $validated['activationId'],
                 'messageId'    => $validated['messageId'],
             ]);
 
-            return response()->json(['success' => true], 200);
+            $number = $number->replicate();
+
+            // Explicitly clear SMS-related fields
+            $number->otp_code = null;
+            $number->sms_text = null;
+            $number->code_received_at = null;
         }
 
-        // Update
-        $number->update([
-            'sms_text'         => $validated['text'],
-            'otp_code'         => $validated['code'],
-            'status'           => 'received',
-            'country_code'     => $validated['country'],
-            'code_received_at' => Carbon::parse($validated['receivedAt']),
-            'daisy_service_name' => $validated['service'],
-        ]);
+        // Save new SMS / OTP
+        $number->activation_id        = $validated['activationId'];
+        $number->sms_text             = $validated['text'];
+        $number->otp_code             = $validated['code'];
+        $number->status               = 'received';
+        $number->country_code         = $validated['country'];
+        $number->code_received_at     = Carbon::parse($validated['receivedAt']);
+        $number->daisy_service_name   = $validated['service'];
+
+        $number->save();
 
         Log::info('DaisySMS Webhook processed successfully', [
             'purchased_number_id' => $number->id,
@@ -233,6 +243,7 @@ class WebhookController extends Controller
 
         return response()->json(['success' => true], 200);
     }
+
 
 
 }
