@@ -9,7 +9,7 @@ return [
 
     'api_key' => env('SMS_ACTIVATE_API_KEY', ''),
 
-    'api_url' => env('SMS_ACTIVATE_API_URL', 'https://hero-sms.com/stubs/handler_api.php'),
+    'api_url' => env('SMS_ACTIVATE_API_URL', 'https://heroooo-sms.com/stubs/handler_api.php'),
 
     'default_country' => env('SMS_ACTIVATE_DEFAULT_COUNTRY', 187), // USA
 
