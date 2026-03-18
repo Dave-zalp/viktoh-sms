@@ -54,7 +54,7 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    'frontend_url' => env('FRONT_URL', 'https://smslegit.com'),
+    'frontend_url' => env('FRONT_URL', 'https://viktohs-sms.com'),
 
     /*
     |--------------------------------------------------------------------------
