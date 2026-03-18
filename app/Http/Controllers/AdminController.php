@@ -16,7 +16,8 @@ class AdminController extends Controller
     {
         try {
             // Basic counts
-            $totalUsers = User::where('role', '!=', 'admin')->count();
+            // $totalUsers = User::where('role', '!=', 'admin')->count();
+            $totalUsers = User::count();
 
             $successfulStatuses = ['completed', 'received'];
 
