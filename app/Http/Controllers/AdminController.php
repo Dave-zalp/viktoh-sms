@@ -56,8 +56,7 @@ class AdminController extends Controller
         $limit = request()->get('limit', 10);
 
         // Recent non-admin users
-        $recentUsers = User::where('role', '!=', 'admin')
-            ->latest()
+        $recentUsers = User::latest()
             ->take($limit)
             ->get(['id', 'username', 'email', 'balance']);
 
