@@ -19,6 +19,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 
 Route::post('/webhook/paymentpoint', [WebhookController::class, 'paymentPointWebhook'])->withoutMiddleware(VerifyCsrfToken::class);
+Route::post('/webhook/pocketfi', [WebhookController::class, 'pocketFiWebhook'])->withoutMiddleware(VerifyCsrfToken::class);
 Route::post('/webhook/sms-activate', [WebhookController::class, 'handleSmsWebhook'])->withoutMiddleware(VerifyCsrfToken::class);
 Route::post('/webhook/daisysms', [WebhookController::class, 'handleDaisyWebhook'])->withoutMiddleware(VerifyCsrfToken::class);
 
@@ -106,8 +107,13 @@ Route::middleware('auth:sanctum')->prefix('auth')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::prefix('virtual-account')->group(function () {
-        Route::post('/generate', [VirtualAccountController::class, 'generateVirtualAccount']); // POST /api/v1/virtual-account/generate
-        Route::get('/', [VirtualAccountController::class, 'getVirtualAccount']); // For Admin Use
+        // PaymentPoint
+        Route::post('/generate', [VirtualAccountController::class, 'generateVirtualAccount']);
+        Route::get('/', [VirtualAccountController::class, 'getVirtualAccount']);
+
+        // PocketFi
+        Route::post('/pocketfi/generate', [VirtualAccountController::class, 'generatePocketFiAccount']);
+        Route::get('/pocketfi', [VirtualAccountController::class, 'getPocketFiAccount']);
     });
 
     Route::prefix('transactions')->group(function () {

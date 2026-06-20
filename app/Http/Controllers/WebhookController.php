@@ -107,6 +107,99 @@ class WebhookController extends Controller
         }
     }
 
+    public function pocketFiWebhook(Request $request): JsonResponse
+    {
+        try {
+            $rawPayload = $request->getContent();
+
+            Log::info('PocketFi Webhook Received', $request->all());
+
+            // Verify HMAC-SHA512 signature
+            $signature = $_SERVER['HTTP_POCKETFI_SIGNATURE'] ?? $request->header('Pocketfi-Signature');
+            $secret    = config('pocketfi.webhook_secret');
+
+            $expectedHash = hash_hmac('sha512', $rawPayload, $secret);
+
+            if (!hash_equals($expectedHash, (string) $signature)) {
+                Log::error('PocketFi webhook: invalid signature');
+                return response()->json(['message' => 'Invalid signature'], 400);
+            }
+
+            $data      = json_decode($rawPayload, true);
+            $amount    = floatval(data_get($data, 'order.settlement_amount'));
+            $reference = data_get($data, 'transaction.reference');
+
+            if (!$amount || !$reference) {
+                Log::warning('PocketFi webhook: missing required fields', $data);
+                return response()->json(['message' => 'Missing required fields'], 400);
+            }
+
+            DB::beginTransaction();
+
+            // Prevent duplicate processing
+            if (Transaction::where('reference', $reference)->exists()) {
+                DB::rollBack();
+                return response()->json(['message' => 'Transaction already processed'], 200);
+            }
+
+            // Match the virtual account by account number embedded in the description
+            $description   = data_get($data, 'order.description', '');
+            $accountNumber = data_get($data, 'account_number') ?? $this->extractAccountNumber($description);
+
+            $virtualAccount = VirtualAccount::where('account_number', $accountNumber)
+                ->where('provider', 'pocketfi')
+                ->first();
+
+            if (!$virtualAccount) {
+                DB::rollBack();
+                Log::error('PocketFi webhook: virtual account not found', [
+                    'account_number' => $accountNumber,
+                    'description'    => $description,
+                ]);
+                return response()->json(['message' => 'Account not found'], 404);
+            }
+
+            $user        = $virtualAccount->user;
+            $transaction = $user->addBalance(
+                $amount,
+                "Deposit via {$virtualAccount->bank_name} - {$description}",
+                'credit'
+            );
+
+            $transaction->update(['reference' => $reference]);
+
+            DB::commit();
+
+            Log::info('PocketFi webhook: balance updated', [
+                'user_id'     => $user->id,
+                'amount'      => $amount,
+                'new_balance' => $user->balance,
+            ]);
+
+            return response()->json(['message' => 'success'], 200);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('PocketFi Webhook Error: ' . $e->getMessage(), [
+                'trace' => $e->getTraceAsString(),
+            ]);
+            return response()->json(['message' => 'Webhook processing failed'], 500);
+        }
+    }
+
+    /**
+     * Extract account number from PocketFi payment description if present.
+     */
+    private function extractAccountNumber(string $description): ?string
+    {
+        // Attempt to pull a 10-digit NUBAN from the description
+        if (preg_match('/\b(\d{10})\b/', $description, $matches)) {
+            return $matches[1];
+        }
+
+        return null;
+    }
+
     public function handleSmsWebhook(Request $request)
     {
         // 1️⃣ Allowed IPs (from documentation)
