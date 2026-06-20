@@ -222,10 +222,43 @@ class VirtualAccountController extends Controller
             ->first();
 
         if (!$virtualAccount) {
-            return response()->json([
-                'success' => false,
-                'message' => 'No PocketFi virtual account found',
-            ], 404);
+            // Auto-generate if none exists
+            $nameParts = explode(' ', trim($user->username), 2);
+            $firstName = $nameParts[0];
+            $lastName  = $nameParts[1] ?? $nameParts[0];
+
+            $result = $this->pocketFi->createStaticVirtualAccount(
+                $firstName,
+                $lastName,
+                $user->phone_number,
+                $user->email
+            );
+
+            if (!$result['success']) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Failed to create virtual account',
+                    'error'   => $result['error'] ?? 'Unknown error',
+                ], 400);
+            }
+
+            $bankAccount = $result['data']['banks'][0] ?? null;
+
+            if (!$bankAccount) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No bank account returned from PocketFi',
+                ], 400);
+            }
+
+            $virtualAccount = VirtualAccount::create([
+                'user_id'        => $user->id,
+                'provider'       => 'pocketfi',
+                'account_number' => $bankAccount['accountNumber'],
+                'account_name'   => $bankAccount['accountName'],
+                'bank_name'      => $bankAccount['bankName'],
+                'business_id'    => $result['data']['businessId'] ?? null,
+            ]);
         }
 
         return response()->json([
