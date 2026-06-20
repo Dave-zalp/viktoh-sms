@@ -95,8 +95,8 @@ jobs:
             echo "🗑️ Clearing old cache..."
             php artisan optimize:clear
 
-            # echo "⚡ Optimizing Laravel..."
-            # php artisan config:cache
+            echo "⚡ Optimizing Laravel..."
+            php artisan config:cache
 
             # # Only cache routes if you have route closures converted to controller methods
             # # If you have closures in routes/web.php or routes/api.php, skip this
