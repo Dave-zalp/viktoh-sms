@@ -106,15 +106,7 @@ Route::middleware('auth:sanctum')->prefix('auth')->group(function () {
     | Virtual Account Routes
     |--------------------------------------------------------------------------
     */
-    Route::prefix('virtual-account')->group(function () {
-        // PaymentPoint
-        Route::post('/generate', [VirtualAccountController::class, 'generateVirtualAccount']);
-        Route::get('/', [VirtualAccountController::class, 'getVirtualAccount']);
-
-        // PocketFi
-        Route::post('/pocketfi/generate', [VirtualAccountController::class, 'generatePocketFiAccount']);
-        Route::get('/pocketfi', [VirtualAccountController::class, 'getPocketFiAccount']);
-    });
+    Route::get('/virtual-account', [VirtualAccountController::class, 'getOrCreateVirtualAccount']);
 
     Route::prefix('transactions')->group(function () {
         Route::get('/me', [TransactionController::class, 'myTransactions']);
