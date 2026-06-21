@@ -77,6 +77,9 @@ class VirtualAccountController extends Controller
 
         $virtualAccount = VirtualAccount::create([
             'user_id'        => $user->id,
+            'customer_name' => $user->username,
+            'customer_email' => $user->email,
+            'customer_phone' => $user->phone,
             'provider'       => 'pocketfi',
             'account_number' => $bankAccount['accountNumber'],
             'account_name'   => $bankAccount['accountName'],
