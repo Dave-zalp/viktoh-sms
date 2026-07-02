@@ -88,12 +88,12 @@ class DaisySmsController extends Controller
                 ], 400);
             }
 
-            // Calculate cost
-            $cost = DaisyServiceModel::getCostByKeyName($serviceCode);
-            $exchangeRate = (float)service_settings()->daisy_sms_exc_rate;
-            $markupPercentage = (float)service_settings()->daisy_sms_top_up;
+            // Calculate cost using live API price — same source as the services list
+            $cost = $this->daisy->getServicePrice($serviceCode);
+            $exchangeRate = (float) service_settings()->daisy_sms_exc_rate;
+            $markupPercentage = (float) service_settings()->daisy_sms_top_up;
 
-            $finalAmount = round($cost * $exchangeRate * (1 + ($markupPercentage / 100)), 2);
+            $finalAmount = round($cost * (1 + ($markupPercentage / 100)) * $exchangeRate, 2);
 
             // Check balance
             if (!$user->hasSufficientBalance($finalAmount)) {
@@ -113,19 +113,19 @@ class DaisySmsController extends Controller
 
             // Save purchase record
             $rentedNumber = PurchasedNumber::create([
-                'user_id'      => $user->id,
-                'activation_id'    => $result['rental_id'],
-                'phone_number' => $result['phone_number'],
-                'service_code' => $serviceCode,
-                'service_id'   => 187,
-                'cost'         => $finalAmount,
-                'status'       => 'waiting',
-                'expires_at'   => $expiresAt,
-                'country_code'=> 187,
-                'operator'    => 'any',
-                'currency'    => 840,
-                'provider' => 'daisysms',
-                'can_request_another_sms' => 0
+                'user_id'        => $user->id,
+                'activation_id'  => $result['rental_id'],
+                'phone_number'   => $result['phone_number'],
+                'service_code'   => $serviceCode,
+                'service_id'     => null,
+                'cost'           => $finalAmount,
+                'status'         => 'waiting',
+                'expires_at'     => $expiresAt,
+                'country_code'   => 187,
+                'operator'       => 'any',
+                'currency'       => 840,
+                'provider'       => 'daisysms',
+                'can_request_another_sms' => 0,
             ]);
 
             // Deduct balance

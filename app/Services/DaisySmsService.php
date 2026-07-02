@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 
 class DaisySmsService
 {
-    protected string $baseUrl = 'https://daisysms.com/stubs/handler_api.php';
+    protected string $baseUrl = 'https://daisysms.io/stubs/handler_api.php';
     protected string $apiKey;
 
     public function __construct()
@@ -39,7 +39,7 @@ class DaisySmsService
      * @param int $countryCode         default = 187 (USA)
      * @return array
      */
-    public function getServicesWithMarkup(int $countryCode = 187): array
+    public function getServicesWithMarkup(): array
     {
         $response = Http::timeout(30)->get($this->baseUrl, [
             'api_key' => $this->apiKey,
@@ -63,36 +63,52 @@ class DaisySmsService
             ];
         }
 
+        $dollar_rate      = (float) service_settings()->daisy_sms_exc_rate;
+        $markupPercentage = (float) service_settings()->daisy_sms_top_up;
+
         $services = [];
 
         foreach ($data as $serviceCode => $value) {
-            if (!isset($value[$countryCode])) {
-                continue; // skip non-USA services
+            if (!isset($value['cost'])) {
+                continue;
             }
 
-            $service = $value[$countryCode];
-
-            // $originalCost = (float) $service['cost'];
-            $originalCost = (float) DaisyServiceModel::getCostByKeyName($serviceCode);
-            $dollar_rate = (float)service_settings()->daisy_sms_exc_rate;;
-            $markupPercentage = (float)service_settings()->daisy_sms_top_up;;
-            $markupAmount = $originalCost * (1 + ($markupPercentage / 100))* $dollar_rate;
-            $finalCost = round($originalCost + $markupAmount, 2);
+            $originalCost = (float) $value['cost'];
+            $finalCost    = round($originalCost * (1 + ($markupPercentage / 100)) * $dollar_rate, 2);
 
             $services[] = [
-                'service_code'   => $serviceCode,
-                'service_name'   => $service['name'],
-                'final_cost'     => $finalCost,
-                'time_to_live'   => $service['ttl'],
+                'service_code' => $serviceCode,
+                'service_name' => ucwords(str_replace(['_', '-'], ' ', $serviceCode)),
+                'final_cost'   => $finalCost,
+                'count'        => $value['count'] ?? 0,
+                'multi'        => $value['multi'] ?? 0,
             ];
         }
 
         return [
-            'success' => true,
-            'message' => 'Services fetched successfully',
+            'success'        => true,
+            'message'        => 'Services fetched successfully',
             'total_services' => count($services),
-            'data' => $services,
+            'data'           => $services,
         ];
+    }
+
+    /**
+     * Get the raw USD cost for a single service from the DaisySMS API
+     */
+    public function getServicePrice(string $serviceCode): float
+    {
+        $response = Http::timeout(15)->get($this->baseUrl, [
+            'api_key' => $this->apiKey,
+            'action'  => 'getPricesVerification',
+        ]);
+
+        if (!$response->ok()) {
+            return 0.0;
+        }
+
+        $data = $response->json();
+        return isset($data[$serviceCode]['cost']) ? (float) $data[$serviceCode]['cost'] : 0.0;
     }
 
     /**
