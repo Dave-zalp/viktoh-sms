@@ -139,9 +139,10 @@ class LoginController extends Controller
             'success' => true,
             'data' => [
                 'user' => [
-                    'id' => $user->id,
+                    // 'id' => $user->id,
                     'username' => $user->username,
                     'email' => $user->email,
+                    'phone' => $user->phone_number,
                     'is_email_verified' => $user->is_email_verified,
                     'balance' => $user->formatted_balance,
                     'created_at' => $user->created_at->toDateTimeString(),
