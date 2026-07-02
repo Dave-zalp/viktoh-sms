@@ -47,6 +47,11 @@ class DaisySmsService
         ]);
 
         if (!$response->ok()) {
+            Log::error('DaisySMS getPricesVerification: non-200 response', [
+                'status' => $response->status(),
+                'body'   => $response->body(),
+            ]);
+
             return [
                 'success' => false,
                 'message' => 'Failed to fetch service list',
@@ -56,6 +61,12 @@ class DaisySmsService
 
         $data = $response->json();
         if (empty($data) || !is_array($data)) {
+            Log::error('DaisySMS getPricesVerification: empty/non-JSON response', [
+                'status' => $response->status(),
+                'body'   => $response->body(),
+                'api_key_set' => !empty($this->apiKey),
+            ]);
+
             return [
                 'success' => false,
                 'message' => 'No data found',
