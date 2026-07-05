@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Transaction;
+use App\Models\PaymentIntent;
 use Illuminate\Http\Request;
 use App\Models\VirtualAccount;
 use App\Models\PurchasedNumber;
@@ -337,10 +338,98 @@ class WebhookController extends Controller
         return response()->json(['success' => true], 200);
     }
 
-    public function KoraPayWebhook (Request $request){
+    public function KoraPayWebhook(Request $request): JsonResponse
+    {
         Log::info('KoraPayWebhook Received', ['payload' => $request->all()]);
 
-        
+        $signature = $request->header('x-korapay-signature');
+
+        if (!$signature) {
+            Log::warning('KoraPay webhook: missing signature header');
+            return response()->json(['message' => 'Invalid signature'], 200);
+        }
+
+        // Korapay signs ONLY the "data" object of the payload, re-encoded.
+        ini_set('serialize_precision', '-1');
+        $payload = json_decode($request->getContent(), true);
+        $data    = $payload['data'] ?? null;
+
+        if (!$data) {
+            Log::warning('KoraPay webhook: missing data object');
+            return response()->json(['message' => 'Invalid payload'], 200);
+        }
+
+        $expectedSignature = hash_hmac('sha256', json_encode($data, JSON_UNESCAPED_SLASHES), config('korapay.secret_key'));
+
+        if (!hash_equals($expectedSignature, $signature)) {
+            Log::error('KoraPay webhook: signature verification failed');
+            return response()->json(['message' => 'Invalid signature'], 200);
+        }
+
+        if (($payload['event'] ?? null) !== 'charge.success' || ($data['status'] ?? null) !== 'success') {
+            Log::info('KoraPay webhook: ignoring non-successful event', ['event' => $payload['event'] ?? null]);
+            return response()->json(['message' => 'Event ignored'], 200);
+        }
+
+        $reference = $data['payment_reference'] ?? $data['reference'] ?? null;
+        $amount    = (float) ($data['amount'] ?? 0);
+
+        if (!$reference) {
+            Log::warning('KoraPay webhook: missing reference');
+            return response()->json(['message' => 'Missing reference'], 200);
+        }
+
+        DB::beginTransaction();
+
+        try {
+            $paymentIntent = PaymentIntent::where('reference', $reference)
+                ->where('gateway', 'korapay')
+                ->lockForUpdate()
+                ->first();
+
+            if (!$paymentIntent) {
+                DB::rollBack();
+                Log::error('KoraPay webhook: payment intent not found', ['reference' => $reference]);
+                return response()->json(['message' => 'Payment intent not found'], 200);
+            }
+
+            if ($paymentIntent->status !== 'pending') {
+                DB::rollBack();
+                Log::info('KoraPay webhook: payment intent already processed', ['reference' => $reference]);
+                return response()->json(['message' => 'Already processed'], 200);
+            }
+
+            $user = $paymentIntent->user;
+
+            $transaction = $user->addBalance(
+                $amount,
+                'Deposit via KoraPay',
+                'credit'
+            );
+            $transaction->update(['reference' => $reference]);
+
+            $paymentIntent->update([
+                'status'   => 'success',
+                'metadata' => $data,
+            ]);
+
+            DB::commit();
+
+            Log::info('KoraPay webhook: balance updated', [
+                'user_id'     => $user->id,
+                'amount'      => $amount,
+                'new_balance' => $user->balance,
+            ]);
+
+            return response()->json(['message' => 'Webhook processed successfully'], 200);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('KoraPay Webhook Error: ' . $e->getMessage(), [
+                'trace' => $e->getTraceAsString(),
+            ]);
+            return response()->json(['message' => 'Webhook processing failed'], 200);
+        }
     }
 
 

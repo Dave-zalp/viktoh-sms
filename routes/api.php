@@ -13,6 +13,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\VirtualAccountController;
+use App\Http\Controllers\KoraPayController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 
@@ -108,6 +109,8 @@ Route::middleware('auth:sanctum')->prefix('auth')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::get('/virtual-account', [VirtualAccountController::class, 'getOrCreateVirtualAccount']);
+
+    Route::post('/korapay/initialize', [KoraPayController::class, 'initialize']);
 
     Route::prefix('transactions')->group(function () {
         Route::get('/me', [TransactionController::class, 'myTransactions']);
