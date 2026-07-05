@@ -84,6 +84,10 @@ class DaisySmsService
                 continue;
             }
 
+            if (str_ends_with(strtolower($serviceCode), '_canada')) {
+                continue;
+            }
+
             $originalCost = (float) $value['cost'];
             $finalCost    = round($originalCost * (1 + ($markupPercentage / 100)) * $dollar_rate, 2);
 
