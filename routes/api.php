@@ -22,6 +22,7 @@ Route::post('/webhook/paymentpoint', [WebhookController::class, 'paymentPointWeb
 Route::post('/webhook/pocketfi', [WebhookController::class, 'pocketFiWebhook'])->withoutMiddleware(VerifyCsrfToken::class);
 Route::post('/webhook/sms-activate', [WebhookController::class, 'handleSmsWebhook'])->withoutMiddleware(VerifyCsrfToken::class);
 Route::post('/webhook/daisysms', [WebhookController::class, 'handleDaisyWebhook'])->withoutMiddleware(VerifyCsrfToken::class);
+Route::post('/webhook/korapay', [WebhookController::class, 'KoraPayWebhook'])->withoutMiddleware(VerifyCsrfToken::class);
 
 
 /*

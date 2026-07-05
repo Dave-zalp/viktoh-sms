@@ -337,6 +337,12 @@ class WebhookController extends Controller
         return response()->json(['success' => true], 200);
     }
 
+    public function KoraPayWebhook (Request $request){
+        Log::info('KoraPayWebhook Received', ['payload' => $request->all()]);
+
+        
+    }
+
 
 
 }
