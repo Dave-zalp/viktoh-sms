@@ -96,7 +96,7 @@ jobs:
             php artisan optimize:clear
 
             echo "⚡ Optimizing Laravel..."
-            php artisan config:cache
+            php artisan config:clear
 
             # # Only cache routes if you have route closures converted to controller methods
             # # If you have closures in routes/web.php or routes/api.php, skip this
