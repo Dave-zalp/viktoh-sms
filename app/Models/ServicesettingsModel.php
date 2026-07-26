@@ -13,6 +13,8 @@ class ServicesettingsModel extends Model
         'sms_activate_top_up',
         'daisy_sms_exc_rate',
         'daisy_sms_top_up',
+        'grizzly_sms_exc_rate',
+        'grizzly_sms_top_up',
     ];
     
 }

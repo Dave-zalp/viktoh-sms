@@ -239,6 +239,8 @@ class AdminController extends Controller
             'sms_activate_top_up'   => 'nullable|numeric',
             'daisy_sms_exc_rate'    => 'nullable|numeric',
             'daisy_sms_top_up'      => 'nullable|numeric',
+            'grizzly_sms_exc_rate'  => 'nullable|numeric',
+            'grizzly_sms_top_up'    => 'nullable|numeric',
         ]);
 
         $settings = ServicesettingsModel::first();

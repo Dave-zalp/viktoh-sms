@@ -8,6 +8,7 @@ use App\Http\Controllers\BalanceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\WebhookController;
 use App\Http\Controllers\DaisySmsController;
+use App\Http\Controllers\GrizzlySmsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransactionController;
@@ -127,6 +128,22 @@ Route::middleware('auth:sanctum')->prefix('auth')->group(function () {
         Route::get('/{id}/get-code', [DaisySmsController::class, 'getCode']);
         Route::post('/{id}/mark-done', [DaisySmsController::class, 'markDone']);
         Route::post('/{id}/cancel', [DaisySmsController::class, 'cancel']);
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | GrizzlySMS Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('grizzlysms')->group(function () {
+        Route::get('/countries', [GrizzlySmsController::class, 'getCountries']); // GET /api/v1/grizzlysms/countries
+        Route::get('/services', [GrizzlySmsController::class, 'getServices']); // GET /api/v1/grizzlysms/services
+        Route::get('/prices', [GrizzlySmsController::class, 'getPrices']); // GET /api/v1/grizzlysms/prices?service=wa&country=187
+        Route::post('/purchase', [GrizzlySmsController::class, 'purchase']); // POST /api/v1/grizzlysms/purchase
+        Route::get('/{id}/status', [GrizzlySmsController::class, 'getStatus']); // GET /api/v1/grizzlysms/1/status
+        Route::post('/{id}/request-sms', [GrizzlySmsController::class, 'requestAnotherSms']); // POST /api/v1/grizzlysms/1/request-sms
+        Route::post('/{id}/cancel', [GrizzlySmsController::class, 'cancel']); // POST /api/v1/grizzlysms/1/cancel
+        Route::post('/{id}/complete', [GrizzlySmsController::class, 'complete']); // POST /api/v1/grizzlysms/1/complete
     });
 
     Route::middleware('admin')->prefix('admin')->group(function(){
