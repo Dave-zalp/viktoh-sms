@@ -1,0 +1,9 @@
+# Allow all search engines to index all pages
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://smslegit.com/sitemap.xml
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1
