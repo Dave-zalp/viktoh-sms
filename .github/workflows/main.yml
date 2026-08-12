@@ -41,7 +41,7 @@ jobs:
           server: ${{ secrets.VIKTOHSMS_SSH_HOST }}
           port: ${{ secrets.VIKTOHSMS_SSH_PORT }}
           ssh_private_key: ${{ secrets.VIKTOHSMS_SSH_KEY }}
-          local_path: './viktoh_sms_back/'
+          local_path: './viktoh_sms_back/*'
           remote_path: ${{ secrets.VIKTOHSMS_BACKEND_DEPLOY_PATH }}
           sftp_only: true
 
@@ -148,7 +148,7 @@ jobs:
           server: ${{ secrets.VIKTOHSMS_SSH_HOST }}
           port: ${{ secrets.VIKTOHSMS_SSH_PORT }}
           ssh_private_key: ${{ secrets.VIKTOHSMS_SSH_KEY }}
-          local_path: './Viktohsms_front/dist/'
+          local_path: './Viktohsms_front/dist/*'
           remote_path: ${{ secrets.VIKTOHSMS_FRONTEND_DEPLOY_PATH }}
           sftp_only: true
 
