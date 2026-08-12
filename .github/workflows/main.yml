@@ -28,7 +28,7 @@ jobs:
       - name: Remove unnecessary files
         working-directory: viktoh_sms_back
         run: |
-          rm -rf .git .github tests node_modules
+          rm -rf .git .github tests vendor node_modules
           rm -rf storage/framework/cache/* storage/framework/sessions/* storage/framework/views/* storage/logs/*
           rm -f .env .env.example
 
