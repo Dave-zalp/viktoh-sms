@@ -41,12 +41,9 @@ export default function SignInViktohs({ onSignUp, onResetPassword }: SignInProps
       });
       
       toast.success('Welcome back!');
-      
-      if (response.data.user.role === 'admin') {
-        window.location.href = '/admin';
-      } else {
-        window.location.href = '/dashboard';
-      }
+
+      refreshUser();
+      navigate(response.data.user.role === 'admin' ? '/admin' : '/dashboard', { replace: true });
     } catch (error: any) {
       console.error('Login error:', error);
       setError(error.message || 'Invalid credentials. Please try again.');

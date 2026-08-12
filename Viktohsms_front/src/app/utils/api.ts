@@ -714,7 +714,7 @@ class ApiClient {
           // Clear auth data
           this.removeToken();
           // Redirect to login
-          window.location.href = '/login';
+          window.location.href = '/signin';
           throw {
             success: false,
             message: 'Session expired. Please login again.',
@@ -733,7 +733,7 @@ class ApiClient {
           // Clear auth data
           this.removeToken();
           // Redirect to login
-          window.location.href = '/login';
+          window.location.href = '/signin';
           throw {
             success: false,
             message: 'Session expired. Please login again.',

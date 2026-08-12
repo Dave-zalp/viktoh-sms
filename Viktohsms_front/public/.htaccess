@@ -1,0 +1,16 @@
+# SPA fallback: this is a client-side (React Router) app.
+# Any request that isn't an existing file/directory must be served
+# index.html so React Router can resolve routes like /dashboard, /admin, etc.
+# Without this, a hard navigation or page refresh on those routes 404s
+# because no such physical path exists on the server.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  RewriteRule ^ index.html [L]
+</IfModule>
