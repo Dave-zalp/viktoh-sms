@@ -155,7 +155,7 @@ export default function Sidebar({ onLogout, isMobile = false, onNavigate }: Side
 
           {/* Server 3 (GrizzlySMS) — shown first */}
           <div className="pt-1">
-            {serverToggle('Server 3', server3Open, server3Active, () => setServer3Open(o => !o))}
+            {serverToggle('USA Numbers', server3Open, server3Active, () => setServer3Open(o => !o))}
             {server3Open && (
               <div className="mt-0.5 ml-3 pl-3 border-l border-purple-200/50 dark:border-[#2E2050] space-y-0.5">
                 {navBtn('/dashboard/server3/buy-numbers', ShoppingCart, 'Buy Numbers', false, false, true)}
